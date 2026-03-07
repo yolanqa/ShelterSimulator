@@ -67,7 +67,7 @@ private:
 public:
     //Animal(const char* nume, const std::string& specie, double greutate, int varsta, const Hrana& hrana_preferata);
 
-    Animal(const char* nume, const std::string &specie, double greutate, int varsta,
+    Animal(const char* nume, const std::string &specie, const double greutate, const int varsta,
         const Hrana &hrana_preferata)
         : specie(specie),
           greutate(greutate),
@@ -110,9 +110,42 @@ public:
     }
 };
 
+class Obstacol {
+private:
+    std::string tip;
+    int pozitie_1;
+    int pozitie_2;
+    bool activ;
+
+public:
+    Obstacol(const std::string &tip, int pozitie_1, int pozitie_2, bool activ)
+        : tip(tip),
+          pozitie_1(pozitie_1),
+          pozitie_2(pozitie_2),
+          activ(true) {
+    }
+
+    void Coliziune(const Animal &animal) const;
+
+    void Efect (const Animal &animal) const;
+
+    void Mutare(int viteza);
+
+    friend std::ostream & operator<<(std::ostream &os, const Obstacol &obj) {
+        return os
+               << "tip: " << obj.tip
+               << " pozitie_1: " << obj.pozitie_1
+               << " pozitie_2: " << obj.pozitie_2
+               << " activ: " << obj.activ;
+    }
+};
+
+
+
 class Bazin {
 private:
-    std::vector<Animal> animale;
+    std::vector<Animal> vector_animale;
+    std::vector<Obstacol> vector_obstacole;
     int volum;
     double temperatura;
     int salinitate;
@@ -121,11 +154,19 @@ public:
     //Bazin(int volum, double temperatura, int salinitate);
 
 
-    Bazin(const std::vector<Animal> &animale, const int volum, const double temperatura, const int salinitate)
-        : animale(animale),
+    Bazin(const std::vector<Animal> &animale, const std::vector<Obstacol> &obstacole, const int volum, const double temperatura, const int salinitate)
+        : vector_animale(animale),
+          vector_obstacole(obstacole),
           volum(volum),
           temperatura(temperatura),
           salinitate(salinitate) {
+    }
+
+    friend std::ostream & operator<<(std::ostream &os, const Bazin &obj) {
+        return os
+               << " volum: " << obj.volum
+               << " temperatura: " << obj.temperatura
+               << " salinitate: " << obj.salinitate;
     }
 
     ~Bazin() = default;
@@ -146,17 +187,56 @@ public:
           buget(buget) {
     }
 
+    friend std::ostream & operator<<(std::ostream &os, const Acvariu &obj) {
+        return os
+               << " nume: " << obj.nume
+               << " buget: " << obj.buget;
+    }
+
     ~Acvariu() = default;
 };
 
 
+
 int main() {
-    std::cout << "Hello, world!\n";
-    Example e1;
-    e1.g();
-    std::array<int, 100> v{};
-    int nr;
-    std::cout << "Introduceți nr: ";
+    Hrana hrana ("shrimps", 100.0, 20.0);
+    Animal animal ("Lary", "specie", 100.0, 5, hrana);
+    Obstacol obstacole ("peste balon", 20, 25, true);
+    std::vector<Animal> vec_animale = {animal};
+    std::vector<Obstacol> vec_obstacole = {obstacole};
+    Bazin bazin (vec_animale, vec_obstacole, 200, 20.0, 3);
+    std::vector<Bazin> vec_bazine = {bazin};
+    Acvariu acvariu (vec_bazine, "Acvariul 1", 100.0);
+
+
+
+    std::cout << hrana << std::endl;
+    std::cout << animal << std::endl;
+    std::cout << obstacole << std::endl;
+    std::cout << bazin << std::endl;
+    std::cout << acvariu << std::endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /////////////////////////////////////////////////////////////////////////
     /// Observație: dacă aveți nevoie să citiți date de intrare de la tastatură,
     /// dați exemple de date de intrare folosind fișierul tastatura.txt
@@ -177,17 +257,9 @@ int main() {
     /// program care merg (și să le evitați pe cele care nu merg).
     ///
     /////////////////////////////////////////////////////////////////////////
-    std::cin >> nr;
+
     /////////////////////////////////////////////////////////////////////////
-    for(int i = 0; i < nr; ++i) {
-        std::cout << "v[" << i << "] = ";
-        std::cin >> v[i];
-    }
-    std::cout << "\n\n";
-    std::cout << "Am citit de la tastatură " << nr << " elemente:\n";
-    for(int i = 0; i < nr; ++i) {
-        std::cout << "- " << v[i] << "\n";
-    }
+
     ///////////////////////////////////////////////////////////////////////////
     /// Pentru date citite din fișier, NU folosiți tastatura.txt. Creați-vă voi
     /// alt fișier propriu cu ce alt nume doriți.
