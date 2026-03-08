@@ -53,6 +53,8 @@ private:
     std::string specie;
     double greutate;
     int varsta;
+    int pozitie_a;
+    int pozitie_b;
     Hrana hrana_preferata;
 
 
@@ -67,12 +69,14 @@ private:
 public:
     //Animal(const char* nume, const std::string& specie, double greutate, int varsta, const Hrana& hrana_preferata);
 
-    Animal(const char* nume, const std::string &specie, const double greutate, const int varsta,
-        const Hrana &hrana_preferata)
-        : specie(specie),
-          greutate(greutate),
-          varsta(varsta),
-          hrana_preferata(hrana_preferata) { functie(nume); }
+        Animal(const char* nume, const std::string &specie, const double greutate, const int varsta, const int pozitie_a, const int pozitie_b,
+            const Hrana &hrana_preferata )
+            : specie(specie),
+              greutate(greutate),
+              varsta(varsta),
+              pozitie_a(pozitie_a),
+              pozitie_b(pozitie_b),
+              hrana_preferata(hrana_preferata) { functie(nume); }
 
 
     Animal(const Animal &other)
@@ -80,6 +84,8 @@ public:
           specie(other.specie),
           greutate(other.greutate),
           varsta(other.varsta),
+          pozitie_a(other.pozitie_a),
+          pozitie_b(other.pozitie_b),
           hrana_preferata(other.hrana_preferata) { functie(other.nume);}
 
 
@@ -91,8 +97,26 @@ public:
         specie = other.specie;
         greutate = other.greutate;
         varsta = other.varsta;
+        pozitie_a = other.pozitie_a;
+        pozitie_b = other.pozitie_b;
         hrana_preferata = other.hrana_preferata;
         return *this;
+    }
+
+    [[nodiscard]] int pozitie_a1() const {
+        return pozitie_a;
+    }
+
+    [[nodiscard]] int pozitie_b1() const {
+        return pozitie_b;
+    }
+
+    void set_pozitie_a(int pozitie_a) {
+        this->pozitie_a = pozitie_a;
+    }
+
+    void set_pozitie_b(int pozitie_b) {
+        this->pozitie_b = pozitie_b;
     }
 
     ~Animal() {
@@ -106,6 +130,8 @@ public:
                << " specie: " << obj.specie
                << " greutate: " << obj.greutate
                << " varsta: " << obj.varsta
+               << " pozitie_a: " << obj.pozitie_a
+               << " pozitie_b: " << obj.pozitie_b
                << " hrana_preferata: " << obj.hrana_preferata;
     }
 };
@@ -125,11 +151,29 @@ public:
           activ(activ) {
     }
 
-    void Coliziune(const Animal &animal) const;
+    bool Coliziune(const Animal &animal) const {
+        if (animal.pozitie_a1() == pozitie_1 && animal.pozitie_b1() == pozitie_2) {
+            return true;
+        }
+        else
+            return false;
+    };
 
-    void Efect (const Animal &animal) const;
+    void Efect (Animal &animal) const {
+        if (tip=="peste_balon") {
+            animal.set_pozitie_a(animal.pozitie_a1()-1);
+        }
+        if (tip=="coral") {
+            std::cout<<"Game over"<<std::endl;
+        }
+    }
 
-    void Mutare(int viteza);
+    void Mutare(int viteza) {
+        pozitie_1=pozitie_1-viteza;
+        if (pozitie_1<0) {
+            activ=false;
+        }
+    }
 
     friend std::ostream & operator<<(std::ostream &os, const Obstacol &obj) {
         return os
@@ -200,7 +244,7 @@ public:
 
 int main() {
     Hrana hrana ("shrimps", 100.0, 20.0);
-    Animal animal ("Lary", "specie", 100.0, 5, hrana);
+    Animal animal ("Lary", "specie", 100.0, 5, 10, 15, hrana);
     Obstacol obstacole ("peste balon", 20, 25, true);
     std::vector<Animal> vec_animale = {animal};
     std::vector<Obstacol> vec_obstacole = {obstacole};
@@ -249,5 +293,17 @@ int main() {
     ///     fis >> v2[i];
     ///
     ///////////////////////////////////////////////////////////////////////////
+    if (obstacole.Coliziune(animal)) {
+        std::cout << "Coliziune detectata" << std::endl;
+    }else {
+        std::cout << " Nu exista coliziune" << std::endl;
+    }
+
+    obstacole.Efect(animal);
+    std::cout << animal << std::endl;
+
+    obstacole.Mutare(5);
+    std::cout << obstacole << std::endl;
+
     return 0;
 }
