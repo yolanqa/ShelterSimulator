@@ -305,5 +305,9 @@ int main() {
     obstacole.Mutare(5);
     std::cout << obstacole << std::endl;
 
+    animal.set_pozitie_b(animal.pozitie_b1()-1);
+    std::cout << animal << std::endl;
+
+
     return 0;
 }
