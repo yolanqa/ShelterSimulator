@@ -107,6 +107,16 @@ public:
         return this->specie == other.specie;
     }
 
+    void afiseaza_stare() const {
+        std::cout << "Starea lui " << (nume ? nume : "(null)") << ": ";
+        if (stare_sanatate <= 3)
+            std::cout << "stare critica\n";
+        else if (stare_sanatate <= 6)
+            std::cout << "stare cat-de-cat buna\n";
+        else
+            std::cout << "stare buna\n";
+    }
+
     friend std::ostream &operator<<(std::ostream &os, const Animal &obj) {
         return os << "nume: " << (obj.nume ? obj.nume : "(null)")
                   << " specie: " << obj.specie
@@ -194,6 +204,10 @@ public:
                 total += ad.get_taxa();
         return total;
     }
+    void adauga_adoptie(const Adoptie &a) {
+        vector_adoptii.push_back(a);
+        std::cout << "Adoptia a fost adaugata cu succes!\n";
+    }
 
     [[nodiscard]] int get_numar_animale() const {
         return static_cast<int>(vector_animale.size());
@@ -249,9 +263,6 @@ public:
 };
 
 
-
-
-
 int main() {
 
     Hrana hrana("carne", 200.0, 30.0);
@@ -276,27 +287,43 @@ int main() {
     std::cout << padoc << "\n";
     std::cout << adapost << "\n\n";
 
+
+    animal1.afiseaza_stare();
+    animal2.afiseaza_stare();
+
+
     adoptie1.aprobare();
     adoptie1.genereaza_contract();
     adoptie2.genereaza_contract();
 
+
+    Adoptie adoptie3("Maria Preotu", "2026-03-10", false, 120.0, "Dingo");
+    padoc.adauga_adoptie(adoptie3);
+
+
     std::cout << "Bella si Pupic sunt compatibile: " << animal1.este_compatibil(animal2) << "\n";
 
-    Hrana hrana2("legume", 100.0, 10.0);
+
+    Hrana hrana2("bobite", 100.0, 10.0);
     animal1.hraneste(hrana2);
     animal1.imbatraneste();
     std::cout << "Dupa hranire si procesul de imbatranire: " << animal1 << "\n";
 
+
     Animal animal3("Dingo", "caine", 45.0, 9, 7, 9, hrana);
     padoc.adauga_animal(animal3);
+    animal3.afiseaza_stare();
+
 
     padoc.hraneste_toate(hrana2);
 
-    std::cout << "Venituri pentru adoptiile aprobate: " << padoc.venituri_adoptii() << " RON\n";
+
+    std::cout << "Venituri pentru adoptiile aprobate: " << padoc.venituri_adoptii() << " Ron\n";
+
 
     adapost.raport();
 
-    std::cout << "Poate cumpara hrana (pret 200): "
+    std::cout << "Poate cumpara hrana: "
               << adapost.poate_cumpara_hrana(200.0) << "\n";
 
     Example e1;
