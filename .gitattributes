@@ -1,1 +1,5 @@
 ext/** linguist-vendored
+* text=auto
+*.cpp linguist-language=C++
+*.h linguist-language=C++
+*.hpp linguist-language=C++
