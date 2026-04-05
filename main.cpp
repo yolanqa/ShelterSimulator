@@ -358,6 +358,10 @@ int main() {
 
     Adoptie adoptie1("Raluca Stefanescu", "2025-12-06", false, 150.0, "Bella");
     Adoptie adoptie2("Alina Stoica", "2026-01-05", false, 100.0, "Pupic");
+    std::cout << "Specia Belleii: " << animal1.get_specie() << "\n";
+    std::cout << "Numele Bellei: " << animal1.get_nume() << "\n";
+    std::cout << "Starea de sanatate: " << animal1.get_stare_sanatate() << "\n";
+    std::cout << "Nivelul de sociabilitate: " << animal1.get_nivel_sociabilitate() << "\n";
 
     std::vector<Animal> vec_animale = {animal1, animal2};
     std::vector<Adoptie> vec_adoptii = {adoptie1, adoptie2};
