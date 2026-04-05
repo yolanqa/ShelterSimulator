@@ -331,6 +331,11 @@ public:
         else return true;
     }
 
+    void alocare_padocuri(Padoc& p,const Hrana& h)const {
+        std::cout<<(nume?nume:"(null")<<" are macar un padoc de hranit.\n";
+        p.hraneste_toate(h);
+    }
+
     friend std::ostream & operator<<(std::ostream &os, const Ingrijitor &obj) {
         return os
                << "nume: " << (obj.nume?obj.nume:"(null)")
@@ -420,6 +425,9 @@ int main() {
     std::cout << ingrijitor << "\n";
     std::cout << "Vechimea: "<<ingrijitor.vechime_in_adapost() << "\n";
     ingrijitor.afisare_salariu();
+    ingrijitor.alocare_padocuri(padoc, hrana2);
+
+
     Example e1;
     e1.g();
 
