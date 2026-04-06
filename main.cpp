@@ -249,8 +249,22 @@ public:
         : padocuri(padocuri), nume(nume), buget(buget) {}
 
     double cost_intretinere() const {
-        return padocuri.size() * 50.0;
+        return padocuri.size() * 50;
     }
+
+    bool adauga_padoc(const Padoc &p) {
+        if (buget >= cost_intretinere() + 100) {
+            padocuri.push_back(p);
+            std::cout << "Padocul a fost adaugat! Buget ramas: "
+                      << buget - cost_intretinere() - 100 << " Ron\n";
+            return true;
+        }
+        std::cout << "Buget insuficient! Bugetul disponibil: "
+                  << buget - cost_intretinere()
+                  << "Buget necesar: 100 Ron\n";
+        return false;
+    }
+
 
     bool poate_cumpara_hrana(const double pret) const {
         return buget >= cost_intretinere() + pret;
@@ -266,6 +280,14 @@ public:
         std::cout << "Cost intretinere: " << cost_intretinere() << " Ron\n";
         std::cout << "Buget ramas: " << buget - cost_intretinere() << " Ron\n";
 
+    }
+
+
+    void afiseaza_padocuri() const {
+        std::cout << "Padocurile din " << nume << ":\n";
+        for (int i = 0; i < static_cast<int>(padocuri.size()); i++) {
+            std::cout << "Padoc " << i + 1 << ": " << padocuri[i] << "\n";
+        }
     }
 
 
@@ -422,6 +444,15 @@ int main() {
 
 
     adapost.raport();
+
+    adapost.afiseaza_padocuri();
+
+
+    Padoc padoc2({}, {}, 3, "hamsteri", 150.0);
+    adapost.adauga_padoc(padoc2);
+    adapost.afiseaza_padocuri();
+
+
 
     std::cout << "Poate cumpara hrana: "
               << adapost.poate_cumpara_hrana(200.0) << "\n";
