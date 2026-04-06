@@ -12,6 +12,7 @@
 
 
 int main() {
+    std::cout<< "Numarul initial de animale: "<< Animal::get_nr_total_animale() << "\n";
 
     Hrana hrana("carne", 200.0, 30.0);
     Animal animal1("Bella", "caine", 25.0, 3, 8, 7, hrana);

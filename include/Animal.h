@@ -9,6 +9,7 @@
 #include "Hrana.h"
 class Animal {
 private:
+    static int nr_total_animale;
     char *nume;
     std::string specie;
     double greutate;
@@ -27,6 +28,8 @@ public:
     Animal(const Animal &other);
 
     Animal &operator=(const Animal &other);
+
+    static int get_nr_total_animale();
 
     ~Animal();
 

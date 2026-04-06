@@ -5,8 +5,10 @@
 #include "Hrana.h"
 #include <ostream>
 #include <cstring>
-
-
+    int Animal::nr_total_animale = 0;
+    int Animal::get_nr_total_animale() {
+        return nr_total_animale;
+    }
     void Animal::copiaza_nume(const char *src) {
         if (src) {
             nume = new char[strlen(src) + 1];
@@ -23,6 +25,7 @@
           stare_sanatate(stare_sanatate), nivel_sociabilitate(nivel_sociabilitate),
           hrana_preferata(hrana_preferata) {
         copiaza_nume(nume);
+        nr_total_animale++;
     }
 
     Animal::Animal(const Animal &other)
@@ -30,6 +33,7 @@
           stare_sanatate(other.stare_sanatate), nivel_sociabilitate(other.nivel_sociabilitate),
           hrana_preferata(other.hrana_preferata) {
         copiaza_nume(other.nume);
+        nr_total_animale++;
     }
 
     Animal &Animal::operator=(const Animal &other) {
@@ -45,7 +49,7 @@
         return *this;
     }
 
-    Animal::~Animal() { delete[] nume; }
+    Animal::~Animal() { delete[] nume; nr_total_animale--; }
 
     [[nodiscard]] double Animal::get_greutate() const { return greutate; }
     [[nodiscard]] int Animal::get_stare_sanatate() const { return stare_sanatate; }
