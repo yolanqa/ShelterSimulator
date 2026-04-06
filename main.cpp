@@ -92,7 +92,7 @@ public:
     [[nodiscard]] double get_greutate() const { return greutate; }
     [[nodiscard]] int get_stare_sanatate() const { return stare_sanatate; }
     [[nodiscard]] int get_nivel_sociabilitate() const { return nivel_sociabilitate; }
-    [[nodiscard]] std::string get_specie() const { return specie; }
+    [[nodiscard]] const std::string get_specie() const { return specie; }
     [[nodiscard]] std::string get_nume() const { return nume ? std::string(nume) : ""; }
 
     void hraneste(const Hrana &h) {
@@ -219,8 +219,8 @@ public:
         return static_cast<int>(vector_animale.size());
     }
 
-    Animal* animal_recomandat() {
-        for (auto &a: vector_animale) {
+    const Animal* animal_recomandat() const {
+        for (const auto &a: vector_animale) {
             if (a.este_de_adoptat()) return &a;
         }
         return nullptr;
@@ -358,10 +358,12 @@ int main() {
 
     Adoptie adoptie1("Raluca Stefanescu", "2025-12-06", false, 150.0, "Bella");
     Adoptie adoptie2("Alina Stoica", "2026-01-05", false, 100.0, "Pupic");
-    std::cout << "Specia Belleii: " << animal1.get_specie() << "\n";
-    std::cout << "Numele Bellei: " << animal1.get_nume() << "\n";
+
+    std::cout << "Specia: " << animal1.get_specie() << "\n";
+    std::cout << "Numele: " << animal1.get_nume() << "\n";
     std::cout << "Starea de sanatate: " << animal1.get_stare_sanatate() << "\n";
     std::cout << "Nivelul de sociabilitate: " << animal1.get_nivel_sociabilitate() << "\n";
+    std::cout << "Greutatea: " << animal1.get_greutate() << "\n";
 
     std::vector<Animal> vec_animale = {animal1, animal2};
     std::vector<Adoptie> vec_adoptii = {adoptie1, adoptie2};
@@ -407,7 +409,7 @@ int main() {
     animal3.afiseaza_stare();
     std::cout<<"Bella este data inspre adoptie: "<<animal1.este_de_adoptat()<<"\n";
 
-    Animal* recomandat = padoc.animal_recomandat();
+    const Animal* recomandat = padoc.animal_recomandat();
     if (recomandat != nullptr)
         std::cout<<"Recomandat pentru adoptie: "<<*recomandat<<"\n";
     else
