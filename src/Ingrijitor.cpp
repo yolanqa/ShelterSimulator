@@ -6,7 +6,7 @@
 #include "Hrana.h"
 #include "Ingrijitor.h"
 #include "Padoc.h"
-
+#include<cstring>
 
 
     void Ingrijitor::copy_nume(const char* src) {
@@ -33,13 +33,14 @@
 
 
     Ingrijitor& Ingrijitor::operator=(const Ingrijitor &other) {
-        if (this == &other)
-            return *this;
-        delete [] nume;
-        copy_nume(other.nume);
-        vechime = other.vechime;
-        post = other.post;
-        salariu = other.salariu;
+        if (this != &other){
+            delete [] nume;
+
+            copy_nume(other.nume);
+            vechime = other.vechime;
+            post = other.post;
+            salariu = other.salariu;
+        }
         return *this;
     }
     Ingrijitor::~Ingrijitor() {delete [] nume;}
@@ -49,8 +50,10 @@
     }
 
     bool Ingrijitor::vechime_in_adapost()const {
-        if (vechime < 5) return false;
-        else return true;
+        if (vechime < 5)
+            return false;
+        else
+            return true;
     }
 
     void Ingrijitor::alocare_padocuri(Padoc& p,const Hrana& h)const {
@@ -59,11 +62,11 @@
     }
 
     std::ostream & operator<<(std::ostream &os, const Ingrijitor &obj) {
-        return os
-               << "nume: " << (obj.nume?obj.nume:"(null)")
-               << "vechime: " << obj.vechime
-               << "post: " << obj.post
-               << "salariu: " << obj.salariu;
+         os << "nume: " << (obj.nume?obj.nume:"(null)")
+            << " | vechime: " << obj.vechime
+            << " | post: " << obj.post
+            << " | salariu: " << obj.salariu;
+        return os;
     }
 
 

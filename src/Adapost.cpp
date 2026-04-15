@@ -12,19 +12,17 @@
         : padocuri(padocuri), nume(nume), buget(buget) {}
 
     double Adapost::cost_intretinere() const {
-        return padocuri.size() * 50;
+        return static_cast<double>(padocuri.size()) * 50;
     }
 
     bool Adapost::adauga_padoc(const Padoc &p) {
-        if (buget >= cost_intretinere() + 100) {
+        if (buget >= cost_intretinere() + 150) {
             padocuri.push_back(p);
             std::cout << "Padocul a fost adaugat! Buget ramas: "
-                      << buget - cost_intretinere() - 100 << " Ron\n";
+                      << buget - cost_intretinere()  << " Ron\n";
             return true;
         }
-        std::cout << "Buget insuficient! Bugetul disponibil: "
-                  << buget - cost_intretinere()
-                  << "Buget necesar: 100 Ron\n";
+        std::cout << "Buget insuficient!\n";
         return false;
     }
 
@@ -58,8 +56,8 @@
         for (const auto &s : padocuri)
             total_animale += s.get_numar_animale();
 
-        double cost_total = total_animale*50.0*luni;
-        bool este_buget = buget>=cost_total;
+        double cost_total = total_animale*50.0*static_cast<double>(luni);
+        bool este_buget = (buget>=cost_total);
 
         if (este_buget) {
             buget = buget - cost_total;
