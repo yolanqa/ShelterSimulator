@@ -86,7 +86,7 @@
     }
 
     void Animal::imbatraneste_d(int luni) {
-        this->varsta + = (luni/12.0);
+        this->varsta += (luni/12.0);
     }
 
     void Animal::stare_de_sanatate_modificata(int valoare) {
