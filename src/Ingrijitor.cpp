@@ -66,7 +66,6 @@
             << " | vechime: " << obj.vechime
             << " | post: " << obj.post
             << " | salariu: " << obj.salariu;
-        return os;
     }
 
 

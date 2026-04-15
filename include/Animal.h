@@ -10,7 +10,7 @@
 class Animal {
 private:
     static int nr_total_animale;
-    char *nume;
+    std::string nume;
     std::string specie;
     double greutate;
     int varsta;
@@ -21,23 +21,21 @@ private:
     void copiaza_nume(const char *src);
 
 public:
-    Animal(const char *nume, const std::string &specie, const double greutate,
+    Animal(const std::string& nume, const std::string &specie, const double greutate,
            const int varsta, const int stare_sanatate, const int nivel_sociabilitate,
            const Hrana &hrana_preferata);
 
-    Animal(const Animal &other);
-
-    Animal &operator=(const Animal &other);
 
     static int get_nr_total_animale();
 
-    ~Animal();
+
 
     [[nodiscard]] double get_greutate() const;
     [[nodiscard]] int get_stare_sanatate() const;
     [[nodiscard]] int get_nivel_sociabilitate() const;
+    [[nodiscard]] const std::string& get_nume() const;
     [[nodiscard]] const std::string& get_specie() const;
-    [[nodiscard]] std::string get_nume() const;
+
 
     void hraneste(const Hrana &h);
 

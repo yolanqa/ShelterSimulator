@@ -13,11 +13,7 @@ private:
     double valoare_nutritiva;
 
 public:
-    Hrana(const std::string &tip, const double cantitate, const double valoare_nutritiva);
 
-    Hrana(const Hrana &other);
-
-    Hrana &operator=(const Hrana &other);
 
     ~Hrana() = default;
 

@@ -41,6 +41,6 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Padoc &obj);
 
-    ~Padoc() = default;
+
 };
 

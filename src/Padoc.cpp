@@ -67,9 +67,9 @@
 
 std::ostream &operator<<(std::ostream &os, const Padoc &obj) {
          os << "tipul animalelor:  ["<<obj.tip_animale<<"]\n"
-            << " capacitate: " << obj.capacitate<<"\n"
-            << " animale prezente in padoc: " << obj.vector_animale.size()<<"\n"
-            << " buget per padoc: " << obj.buget_sectiune;
+            << " | capacitate: " << obj.capacitate<<"\n"
+            << " | animale prezente in padoc: " << obj.vector_animale.size()<<"\n"
+            << " | buget per padoc: " << obj.buget_sectiune;
 
         if (obj.vector_animale.empty())
             os<<"Nu sunt animale in padoc";

@@ -34,7 +34,7 @@ public:
     void trece_timpul(int luni);
 
 
-    ~Adapost() = default;
+
 
 
     friend std::ostream &operator<<(std::ostream &os, const Adapost &obj);
