@@ -35,6 +35,8 @@ public:
 
     const Animal* animal_recomandat() const;
 
+    void actualizare_animale(int luni, bool este_buget);
+
 
 
     friend std::ostream &operator<<(std::ostream &os, const Padoc &obj);

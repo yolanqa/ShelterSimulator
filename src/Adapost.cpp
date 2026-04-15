@@ -53,12 +53,34 @@
         }
     }
 
+    void Adapost::trece_timpul(int luni) {
+        int total_animale = 0;
+        for (const auto &s : padocuri)
+            total_animale += s.get_numar_animale()
+
+        double cost_total = total_animale*50.0*luni;
+        bool este_buget = buget>=cost_total;
+
+        if (este_buget) {
+            buget = buget - cost_total;
+            std::cout<<"Cheltuiala de: "<<cost_total<<"; "<<"Buget ramas: "<<buget;
+        }
+        else {
+            buget = 0;
+        }
+
+        for (auto &s : padocuri)
+            s.actualizare_animale(luni,este_buget);
+
+
+
 
 
     std::ostream &operator<<(std::ostream &os, const Adapost &obj) {
-        return os << "nume: " << obj.nume
-                  << " buget: " << obj.buget
-                  << " padocuri: " << obj.padocuri.size();
+        os << "Adapost: "<< obj.nume<<"\n";
+        for (const auto &padoc : obj.padocuri)
+                  os<<padoc << "\n";
+        return os;
     }
 
 

@@ -53,13 +53,32 @@
         return nullptr;
     }
 
+    void Padoc::actualizare_animale(int luni, bool este_buget) {
+        for (auto&a: vector_animale) {
+            a.imbatraneste_d(luni);
+            if (!este_buget) {
+                a.stare_de_sanatate_modificata(-10*luni);
+            }
+            else {a.stare_de_sanatate_modificata(2*luni);}
+        }
+
+    }
 
 
-    std::ostream &operator<<(std::ostream &os, const Padoc &obj) {
-        return os << "tipul animalelor: " << obj.tip_animale
-                  << " capacitate: " << obj.capacitate
-                  << " animale prezente in padoc: " << obj.vector_animale.size()
-                  << " buget per padoc: " << obj.buget_sectiune;
+std::ostream &operator<<(std::ostream &os, const Padoc &obj) {
+         os << "tipul animalelor:  ["<<obj.tip_animale<<"]\n"
+            << " capacitate: " << obj.capacitate<<"\n"
+            << " animale prezente in padoc: " << obj.vector_animale.size()<<"\n"
+            << " buget per padoc: " << obj.buget_sectiune;
+
+        if (obj.vector_animale.empty())
+            os<<"Nu sunt animale in padoc";
+        else {
+            os<<"ANimale: ";
+            for (const auto &a: obj.vector_animale)
+                os<<"-"<<a<<"\n";
+        }
+        return os;
     }
 
 

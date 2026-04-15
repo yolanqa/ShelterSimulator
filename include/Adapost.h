@@ -31,6 +31,8 @@ public:
 
     void afiseaza_padocuri() const;
 
+    void trece_timpul(int luni);
+
 
     ~Adapost() = default;
 

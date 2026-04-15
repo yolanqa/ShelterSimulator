@@ -49,5 +49,10 @@ public:
 
     bool este_de_adoptat() const;
 
+    void imbatraneste_d(int luni_din_an);
+
+    void stare_de_sanatate_modificata(int valoare);
+
+
     friend std::ostream &operator<<(std::ostream &os, const Animal &obj);
 };

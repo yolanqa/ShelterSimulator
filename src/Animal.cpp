@@ -85,6 +85,18 @@
         else return false;
     }
 
+    void Animal::imbatraneste_d(int luni) {
+        this->varsta + = (luni/12.0);
+    }
+
+    void Animal::stare_de_sanatate_modificata(int valoare) {
+        this->stare_sanatate+=valoare;
+        if (this-> stare_sanatate>100)
+            this->stare_sanatate=100;
+        if (this-> stare_sanatate<0)
+            this->stare_sanatate=0;
+    }
+
     std::ostream &operator<<(std::ostream &os, const Animal &obj) {
         return os << "nume: " << (obj.nume ? obj.nume : "(null)")
                   << " specie: " << obj.specie

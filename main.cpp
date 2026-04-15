@@ -2,7 +2,7 @@
 #include <cstring>
 #include <ostream>
 #include <vector>
-#include "include/Example.h"
+
 #include "Animal.h"
 #include "Padoc.h"
 #include "Adoptie.h"
@@ -32,6 +32,14 @@ int main() {
 
     Padoc padoc(vec_animale, vec_adoptii, 5, "caine/pisica", 300.0);
     std::vector<Padoc> vec_padocuri = {padoc};
+
+    Adapost adapostul_meu(vec_padocuri, "Speranta", 2000.0);
+
+    std::cout<<adapostul_meu<<std::endl;
+    adapostul_meu.trece_timpul(12);
+    std::cout<<"Dupa 12 luni: "<<"\n";
+    std::cout<<adapostul_meu<<"\n";
+
 
     Adapost adapost(vec_padocuri, "Adapostul Sperantei", 500.0);
 
@@ -104,9 +112,6 @@ int main() {
     ingrijitor.afisare_salariu();
     ingrijitor.alocare_padocuri(padoc, hrana2);
 
-
-    Example e1;
-    e1.g();
 
     return 0;
 }

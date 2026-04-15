@@ -57,7 +57,6 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         src/Padoc.cpp
         src/Adapost.cpp
         src/Ingrijitor.cpp
-        src/Example.cpp
         include/Adapost.h
         include/Adoptie.h
         include/Animal.h
@@ -67,7 +66,7 @@ add_executable(${MAIN_EXECUTABLE_NAME}
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}
 #    PRIVATE
-#        src/Example.cpp
+#
 #)
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
