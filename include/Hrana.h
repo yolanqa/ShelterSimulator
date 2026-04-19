@@ -15,8 +15,7 @@ private:
 public:
 
 
-
-
+    Hrana(const std::string &tip, const double cantitate, const double valoare_nutritiva);
     [[nodiscard]] double get_valoare_nutritiva() const;
 
     friend std::ostream &operator<<(std::ostream &os, const Hrana &obj);

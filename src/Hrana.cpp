@@ -7,7 +7,7 @@
 
 
     Hrana::Hrana(const std::string &tip, const double cantitate, const double valoare_nutritiva)
-        : tip(tip), cantitate(cantitate), valoare_nutritiva(valoare_nutritiva) {}
+        : tip(tip), cantitate(cantitate), valoare_nutritiva(valoare_nutritiva){}
 
 
 
