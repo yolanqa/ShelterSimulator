@@ -9,7 +9,7 @@
             throw RasaInvalidaException(rasa);
     };
 
-    std::string Pisica::get_rasa() const{return rasa;}
+    const std::string& Pisica::get_rasa() const{return rasa;}
     Animal* Pisica::clone() const {
         return new Pisica(*this);
     }

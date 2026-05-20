@@ -10,7 +10,7 @@
             throw ApaInvalidaException(apa);
     };
 
-    std::string Peste::get_apa() const {return apa;}
+    const std::string& Peste::get_apa() const {return apa;}
 
     Animal* Peste::clone() const {
         return new Peste(*this);

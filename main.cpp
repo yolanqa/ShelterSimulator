@@ -146,11 +146,13 @@ int main() {
 
     Peste animal4(nume_peste.c_str(), "peste", 0.5, 1, 9, 3, hrana, apa_peste);
     std::cout << animal4 << "\n";
+    std::cout << "Tipul apei: " << animal4.get_apa() << "\n";
     animal4.sunet();
     std::cout << "Taxa adoptie pentru peste: " << animal4.calculeaza_taxa_adoptie() << " Ron\n";
 
     Pisica animal5(nume_pisica.c_str(), "pisica", 3.0, 2, 8, 6, hrana, rasa_pisica);
     std::cout << animal5 << "\n";
+    std::cout << "Rasa pisicii: " << animal5.get_rasa() << "\n";
     animal5.sunet();
     std::cout << "Taxa adoptie pentru pisica: " << animal5.calculeaza_taxa_adoptie() << " Ron\n";
 
@@ -184,8 +186,8 @@ int main() {
     ingrijitor.afisare_salariu();
     ingrijitor.alocare_padocuri(padoc, hrana2);
 
-    Animal* a = new Caine("Rex", "caine", 25.0, 3, 8, 7, hrana, "paza");
-    Caine* c = dynamic_cast<Caine*>(a);
+    const Animal* a = new Caine("Rex", "caine", 25.0, 3, 8, 7, hrana, "paza");
+    const Caine* c = dynamic_cast<const Caine*>(a);
     if (c != nullptr)
         std::cout << "Este caine din grupa: " << c->get_grupa() << "\n";
     else

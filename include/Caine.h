@@ -12,7 +12,7 @@ class Caine:public Animal{
 protected:
     void print(std::ostream& os) const override;
 public:
-    std::string get_grupa() const;
+    const std::string& get_grupa() const;
     Caine(const std::string& nume, const std::string& specie, double greutate, int varsta, int stare_sanatate, int nivel_sociabilitate, const Hrana& hrana_preferata, const std::string& grupa);
     void sunet()const override ;
 

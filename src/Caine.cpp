@@ -6,7 +6,7 @@
 
 
 
-    std::string Caine::get_grupa() const { return grupa; }
+    const std::string& Caine::get_grupa() const { return grupa; }
     Caine::Caine(const std::string& nume, const std::string& specie,  double greutate,  int varsta,  int stare_sanatate, int nivel_sociabilitate, const Hrana& hrana_preferata, const std::string& grupa): Animal(nume, specie, greutate, varsta, stare_sanatate, nivel_sociabilitate, hrana_preferata), grupa(grupa){
         if (grupa.empty() || grupa == "null")
             throw RasaInvalidaException(grupa);}

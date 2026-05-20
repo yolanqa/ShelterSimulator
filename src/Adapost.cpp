@@ -37,10 +37,10 @@
     void Adapost::raport() const {
         std::cout << "Raport: " << nume << "\n";
         std::cout << "Numar padocuri: " << padocuri.size() << "\n";
-        int total_animale = 0;
+        int nr_animale = 0;
         for (const auto &s : padocuri)
-            total_animale += s->get_numar_animale();
-        std::cout << "Total animale: " << total_animale << "\n";
+            nr_animale += s->get_numar_animale();
+        std::cout << "Total animale: " << nr_animale << "\n";
         std::cout << "Cost intretinere: " << cost_intretinere() << " Ron\n";
         std::cout << "Buget ramas: " << buget - cost_intretinere() << " Ron\n";
 
@@ -59,11 +59,11 @@
 
 
     void Adapost::trece_timpul(int luni) {
-        int total_animale = 0;
+        int nr_animale = 0;
         for (const auto &s : padocuri)
-            total_animale += s->get_numar_animale();
+            nr_animale += s->get_numar_animale();
 
-        double cost_total = total_animale*50.0*static_cast<double>(luni);
+        double cost_total = nr_animale*50.0*static_cast<double>(luni);
         bool este_buget = (buget>=cost_total);
 
         if (este_buget) {
