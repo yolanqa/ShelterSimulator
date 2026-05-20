@@ -1,7 +1,8 @@
 #include <iostream>
-#include <cstring>
+
 #include <ostream>
 #include <vector>
+#include <memory>
 
 #include "Animal.h"
 #include "Padoc.h"
@@ -15,7 +16,66 @@
 #include "Exceptii.h"
 
 int main() {
-    std::cout<< "Numarul initial de animale: "<< Animal::get_nr_total_animale() << "\n";
+
+    std::string nume_adapost;
+    double buget_adapost;
+    int luni_simulare;
+
+    std::string nume_caine;
+    std::string grupa_caine;
+
+    std::string nume_peste;
+    std::string apa_peste;
+
+    std::string nume_pisica;
+    std::string rasa_pisica;
+
+    std::string nume_ingrijitor;
+    std::string post_ingrijitor;
+    int vechime_ingrijitor;
+    double salariu_ingrijitor;
+
+    std::cout << "Introduceti numele adapostului: ";
+    std::getline(std::cin, nume_adapost);
+
+    std::cout << "Introduceti bugetul adapostului: ";
+    std::cin >> buget_adapost;
+
+    std::cout << "Introduceti numarul de luni pentru simulare: ";
+    std::cin >> luni_simulare;
+    std::cin.ignore();
+
+    std::cout << "Introduceti numele noului caine: ";
+    std::getline(std::cin, nume_caine);
+
+    std::cout << "Introduceti grupa cainelui: ";
+    std::getline(std::cin, grupa_caine);
+
+    std::cout << "Introduceti numele noului peste: ";
+    std::getline(std::cin, nume_peste);
+
+    std::cout << "Introduceti tipul de apa in care traieste pestele: ";
+    std::getline(std::cin, apa_peste);
+
+    std::cout << "Introduceti numele noii pisici: ";
+    std::getline(std::cin, nume_pisica);
+
+    std::cout << "Introduceti rasa pisicii: ";
+    std::getline(std::cin, rasa_pisica);
+
+    std::cout << "Introduceti numele ingrijitorului: ";
+    std::getline(std::cin, nume_ingrijitor);
+
+    std::cout << "Introduceti postul ingrijitorului: ";
+    std::getline(std::cin, post_ingrijitor);
+
+    std::cout << "Introduceti vechimea ingrijitorului: ";
+    std::cin >> vechime_ingrijitor;
+
+    std::cout << "Introduceti salariul ingrijitorului: ";
+    std::cin >> salariu_ingrijitor;
+    std::cout<<"\n";
+    std::cout << "Numarul initial de animale: " << Animal::get_nr_total_animale() << "\n";
 
     Hrana hrana("carne", 200.0, 30.0);
     Caine animal1("Bella", "caine", 25.0, 3, 8, 7, hrana, "paza");
@@ -40,18 +100,16 @@ int main() {
     std::vector<std::unique_ptr<Padoc>> vec_padocuri;
     vec_padocuri.push_back(std::make_unique<Padoc>(padoc));
 
-    Adapost adapostul_meu(std::move(vec_padocuri), "Speranta", 2000.0);
+    Adapost adapostul_meu(std::move(vec_padocuri), nume_adapost, buget_adapost);
 
-
-    std::cout<<adapostul_meu<<std::endl;
-    adapostul_meu.trece_timpul(12);
-    std::cout<<"Dupa 12 luni: "<<"\n";
-    std::cout<<adapostul_meu<<"\n";
+    std::cout << adapostul_meu << std::endl;
+    adapostul_meu.trece_timpul(luni_simulare);
+    std::cout << "Dupa " << luni_simulare << " luni:\n";
+    std::cout << adapostul_meu << "\n";
 
     std::vector<std::unique_ptr<Padoc>> vec_padocuri2;
     vec_padocuri2.push_back(std::make_unique<Padoc>(padoc));
     Adapost adapost(std::move(vec_padocuri2), "Adapostul Sperantei", 500.0);
-
 
     std::cout << hrana << "\n";
     std::cout << animal1 << "\n";
@@ -60,80 +118,79 @@ int main() {
     std::cout << padoc << "\n";
     std::cout << adapost << "\n\n";
 
-
     animal1.afiseaza_stare();
     animal2.afiseaza_stare();
 
+    animal1.sunet();
+    animal2.sunet();
 
     adoptie1.aprobare();
     adoptie1.genereaza_contract();
     adoptie2.genereaza_contract();
 
-
-    Adoptie adoptie3("Maria Preotu", "2026-03-10", false, 120.0, "Dingo");
+    Adoptie adoptie3("Maria Preotu", "2026-03-10", false, 120.0, nume_caine);
     padoc.adauga_adoptie(adoptie3);
 
-
     std::cout << "Bella si Pupic sunt compatibile: " << animal1.este_compatibil(animal2) << "\n";
-
 
     Hrana hrana2("bobite", 100.0, 10.0);
     animal1.hraneste(hrana2);
     animal1.imbatraneste();
     std::cout << "Dupa hranire si procesul de imbatranire: " << animal1 << "\n";
 
-
-
-    Caine animal3("Dingo", "caine", 45.0, 9, 7, 9, hrana, "paza");
+    // folosim datele citite de la tastatura
+    Caine animal3(nume_caine.c_str(), "caine", 20.0, 2, 8, 7, hrana, grupa_caine);
     padoc.adauga_animal(animal3);
     animal3.afiseaza_stare();
-    std::cout<<"Bella este data inspre adoptie: "<<animal1.este_de_adoptat()<<"\n";
+    animal3.sunet();
+
+    Peste animal4(nume_peste.c_str(), "peste", 0.5, 1, 9, 3, hrana, apa_peste);
+    std::cout << animal4 << "\n";
+    animal4.sunet();
+    std::cout << "Taxa adoptie pentru peste: " << animal4.calculeaza_taxa_adoptie() << " Ron\n";
+
+    Pisica animal5(nume_pisica.c_str(), "pisica", 3.0, 2, 8, 6, hrana, rasa_pisica);
+    std::cout << animal5 << "\n";
+    animal5.sunet();
+    std::cout << "Taxa adoptie pentru pisica: " << animal5.calculeaza_taxa_adoptie() << " Ron\n";
+
+    std::cout << "Bella este data spre adoptie: " << animal1.este_de_adoptat() << "\n";
 
     const Animal* recomandat = padoc.animal_recomandat();
     if (recomandat != nullptr)
-        std::cout<<"Recomandat pentru adoptie: "<<*recomandat<<"\n";
+        std::cout << "Recomandat pentru adoptie: " << *recomandat << "\n";
     else
-        std::cout<<"Recomandat pentru adoptie: nullptr\n";
+        std::cout << "Recomandat pentru adoptie: nullptr\n";
 
     padoc.hraneste_toate(hrana2);
 
-
     std::cout << "Venituri pentru adoptiile aprobate: " << padoc.venituri_adoptii() << " Ron\n";
 
-
     adapost.raport();
-
     adapost.afiseaza_padocuri();
-
 
     Padoc padoc2({}, {}, 3, "hamsteri", 150.0);
     adapost.adauga_padoc(padoc2);
     adapost.afiseaza_padocuri();
 
+    std::cout << "Poate cumpara hrana: " << adapost.poate_cumpara_hrana(200.0) << "\n";
 
+    std::cout << "Taxa adoptie Bella: " << animal1.calculeaza_taxa_adoptie() << " Ron\n";
+    std::cout << "Taxa adoptie Pupic: " << animal2.calculeaza_taxa_adoptie() << " Ron\n";
 
-    std::cout << "Poate cumpara hrana: "
-              << adapost.poate_cumpara_hrana(200.0) << "\n";
-
-
-    Ingrijitor ingrijitor ("Stefan Ghetu", 5, "veterinar",6000.0);
+    Ingrijitor ingrijitor(nume_ingrijitor.c_str(), vechime_ingrijitor, post_ingrijitor, salariu_ingrijitor);
     std::cout << ingrijitor << "\n";
-    std::cout << "Vechimea: "<<ingrijitor.vechime_in_adapost() << "\n";
+    std::cout << "Vechimea: " << ingrijitor.vechime_in_adapost() << "\n";
     ingrijitor.afisare_salariu();
     ingrijitor.alocare_padocuri(padoc, hrana2);
 
-
     Animal* a = new Caine("Rex", "caine", 25.0, 3, 8, 7, hrana, "paza");
-
-
     Caine* c = dynamic_cast<Caine*>(a);
     if (c != nullptr)
         std::cout << "Este caine din grupa: " << c->get_grupa() << "\n";
     else
         std::cout << "Nu este caine\n";
-
     delete a;
-
 
     try {
         Caine c_invalid("Invalid", "caine", 25.0, 3, 8, 7, hrana, "");
