@@ -10,6 +10,7 @@
 #include <string>
 #include "Adoptie.h"
 #include "Hrana.h"
+#include <algorithm>
 
 
     Padoc::Padoc(const std::vector<std::unique_ptr<Animal>>& animale, const std::vector<Adoptie> &adoptii,
@@ -26,6 +27,15 @@
             buget_sectiune(other.buget_sectiune) {
         for (const auto& a : other.vector_animale)
             vector_animale.push_back(std::unique_ptr<Animal>(a->clone()));
+    }
+
+    Padoc& Padoc::operator=(Padoc other) {
+        std::swap(vector_animale, other.vector_animale);
+        std::swap(vector_adoptii, other.vector_adoptii);
+        std::swap(capacitate, other.capacitate);
+        std::swap(tip_animale, other.tip_animale);
+        std::swap(buget_sectiune, other.buget_sectiune);
+        return *this;
     }
 
 
@@ -78,7 +88,7 @@
     }
 
 
-std::ostream &operator<<(std::ostream &os, const Padoc &obj) {
+    std::ostream &operator<<(std::ostream &os, const Padoc &obj) {
          os << "tipul animalelor:  ["<<obj.tip_animale<<"]\n"
             << " | capacitate: " << obj.capacitate<<"\n"
             << " | animale prezente in padoc: " << obj.vector_animale.size()<<"\n"
@@ -89,9 +99,23 @@ std::ostream &operator<<(std::ostream &os, const Padoc &obj) {
         else {
             os<<"ANimale: ";
             for (const auto &a: obj.vector_animale)
-                os<<"-"<<a<<"\n";
+                os<<"-"<<*a<<"\n";
         }
         return os;
+    }
+
+    bool Padoc::exista_animal_critic() const {
+        return std::find_if(vector_animale.begin(), vector_animale.end(),
+            [](const std::unique_ptr<Animal>& a) {
+                return a->get_stare_sanatate() <= 3;
+            }) != vector_animale.end();
+    }
+
+    int Padoc::numar_animale_adoptabile() const {
+        return static_cast<int>(std::count_if(vector_animale.begin(), vector_animale.end(),
+            [](const std::unique_ptr<Animal>& a) {
+                return a->este_de_adoptat();
+            }));
     }
 
 

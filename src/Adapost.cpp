@@ -6,9 +6,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <numeric>
+#include "Exceptii.h"
 
 
-    Adapost::Adapost(std::vector<std::unique_ptr<Padoc>>& padocuri, const std::string &nume, double buget)
+    Adapost::Adapost(std::vector<std::unique_ptr<Padoc>>&& padocuri, const std::string &nume, double buget)
         : nume(nume), buget(buget) {
         for (auto& p : padocuri)
             this->padocuri.push_back(std::move(p));
@@ -50,7 +52,7 @@
     void Adapost::afiseaza_padocuri() const {
         std::cout << "Padocurile din " << nume << ":\n";
         for (int i = 0; i < static_cast<int>(padocuri.size()); i++) {
-            std::cout << "Padoc " << i + 1 << ": " << padocuri[i] << "\n";
+            std::cout << "Padoc " << i + 1 << ": " << *padocuri[i] << "\n";
         }
     }
 
@@ -79,9 +81,14 @@
     std::ostream &operator<<(std::ostream &os, const Adapost &obj) {
         os << "Adapost: "<< obj.nume<<"\n";
         for (const auto &padoc : obj.padocuri)
-                  os<<padoc << "\n";
+                  os<<*padoc << "\n";
         return os;
     }
 
-
+    int Adapost::total_animale() const {
+        return std::accumulate(padocuri.begin(), padocuri.end(), 0,
+            [](int sum, const std::unique_ptr<Padoc>& p) {
+                return sum + p->get_numar_animale();
+            });
+    }
 

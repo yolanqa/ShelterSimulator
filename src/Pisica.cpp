@@ -6,10 +6,10 @@
 
     Pisica::Pisica(const std::string& nume, const std::string& specie, double greutate, int varsta, int stare_sanatate, int nivel_sociabilitate, const Hrana& hrana_preferata, const std::string& rasa):Animal(nume, specie, greutate, varsta, stare_sanatate, nivel_sociabilitate, hrana_preferata), rasa(rasa) {
         if (rasa.empty() || rasa == "null")
-            throw RasaInvalidaPisicaException(rasa);
+            throw RasaInvalidaException(rasa);
     };
 
-    std::string Pisica::get_rasa() const{return rasa;};
+    std::string Pisica::get_rasa() const{return rasa;}
     Animal* Pisica::clone() const {
         return new Pisica(*this);
     }

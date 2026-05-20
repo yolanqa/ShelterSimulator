@@ -18,7 +18,7 @@ public:
 
     Animal* clone() const override;
 
-    double calculeaza_taxa_adoptie() const;
+    double calculeaza_taxa_adoptie() const override;
 
     ~Pisica();
 

@@ -25,6 +25,7 @@ public:
     Padoc(const std::vector<std::unique_ptr<Animal>>& animale, const std::vector<Adoptie> &adoptii,
               int capacitate, const std::string &tip_animale, double buget_sectiune);
     Padoc(const Padoc& other);
+    Padoc& operator=(Padoc other);
     bool adauga_animal(const Animal &a);
 
     void hraneste_toate(const Hrana &h);
@@ -41,7 +42,8 @@ public:
 
     void actualizare_animale(int luni, bool este_buget);
 
-
+    bool exista_animal_critic() const;
+    int numar_animale_adoptabile() const;
 
     friend std::ostream &operator<<(std::ostream &os, const Padoc &obj);
 

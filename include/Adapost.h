@@ -18,7 +18,7 @@ private:
     double buget;
 
 public:
-    Adapost(std::vector<std::unique_ptr<Padoc>>& padocuri, const std::string &nume,  double buget);
+    Adapost(std::vector<std::unique_ptr<Padoc>>&& padocuri, const std::string &nume,  double buget);
 
     double cost_intretinere() const;
 
@@ -34,7 +34,7 @@ public:
 
     void trece_timpul(int luni);
 
-
+    int total_animale() const;
 
 
 

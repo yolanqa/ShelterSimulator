@@ -19,9 +19,9 @@ public:
 };
 
 
-class ApaInvalidaPisicaException : public AdapostException {
+class ApaInvalidaException : public AdapostException {
 public:
-explicit ApaInvalidaPisicaException(const std::string& apa)
+explicit ApaInvalidaException(const std::string& apa)
     : AdapostException("Tip apa invalid: " + apa) {}
 };
 

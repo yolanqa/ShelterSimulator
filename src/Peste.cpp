@@ -7,7 +7,7 @@
 
     Peste::Peste(const std::string& nume, const std::string& specie, double greutate, int varsta, int stare_sanatate, int nivel_sociabilitate, const Hrana& hrana_preferata, const std::string& apa):Animal(nume, specie, greutate, varsta, stare_sanatate, nivel_sociabilitate, hrana_preferata), apa(apa) {
         if (apa.empty() || apa == "null")
-            throw ApaInvalidaPisicaException(apa);
+            throw ApaInvalidaException(apa);
     };
 
     std::string Peste::get_apa() const {return apa;}

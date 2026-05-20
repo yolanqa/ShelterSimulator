@@ -16,7 +16,7 @@ public:
     void sunet() const override;
     Animal* clone() const override;
 
-    double calculeaza_taxa_adoptie() const;
+    double calculeaza_taxa_adoptie() const override;
 
     ~Peste();
 
