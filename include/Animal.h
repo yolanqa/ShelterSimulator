@@ -10,6 +10,8 @@
 class Animal {
 private:
     static int nr_total_animale;
+    static int contor_id;
+    int id;
     std::string nume;
     std::string specie;
     double greutate;
@@ -25,6 +27,9 @@ public:
     Animal(const std::string& nume, const std::string &specie, const double greutate,
            const int varsta, const int stare_sanatate, const int nivel_sociabilitate,
            const Hrana &hrana_preferata);
+
+    static int get_contor_id();
+    [[nodiscard]] int get_id() const;
 
     virtual Animal* clone() const =0;
     virtual void sunet()const =0;

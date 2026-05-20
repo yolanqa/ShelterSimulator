@@ -14,12 +14,20 @@
     Animal::Animal(const std::string &nume, const std::string &specie, const double greutate,
            const int varsta, const int stare_sanatate, const int nivel_sociabilitate,
            const Hrana &hrana_preferata)
-        : nume(nume), specie(specie), greutate(greutate), varsta(varsta),
+        : id(++contor_id), nume(nume), specie(specie), greutate(greutate), varsta(varsta),
           stare_sanatate(stare_sanatate), nivel_sociabilitate(nivel_sociabilitate),
           hrana_preferata(hrana_preferata) {
         nr_total_animale++;
     }
+    int Animal::contor_id = 0;
 
+    int Animal::get_contor_id() {
+    return contor_id;
+    }
+
+    int Animal::get_id() const {
+    return id;
+    }
 
 
 
@@ -91,6 +99,7 @@
            << " | varsta: " << varsta
            << " | stare_sanatate: " << stare_sanatate
            << " | nivel_sociabilitate: " << nivel_sociabilitate
-           << " | hrana_preferata: [" << hrana_preferata << "]";
+           << " | hrana_preferata: [" << hrana_preferata << "]"
+           << " | id: [" << id << "]";
     }
     //Animal::~Animal() = default;

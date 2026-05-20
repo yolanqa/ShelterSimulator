@@ -106,6 +106,11 @@ int main() {
     Caine animal1("Bella", "caine", 25.0, 3, 8, 7, hrana, "paza");
     Pisica animal2("Pupic", "pisica", 4.0, 2, 9, 5, hrana, "siameza");
 
+    std::cout << "ID Bella: " << animal1.get_id() << "\n";
+    std::cout << "ID Pupic: " << animal2.get_id() << "\n";
+    std::cout << "Total animale create: " << Animal::get_contor_id() << "\n";
+
+
     Adoptie adoptie1("Raluca Stefanescu", "2025-12-06", false, 150.0, "Bella");
     Adoptie adoptie2("Alina Stoica", "2026-01-05", false, 100.0, "Pupic");
 
