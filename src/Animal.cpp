@@ -69,6 +69,10 @@
             this->stare_sanatate=0;
     }
 
+    bool Animal::necesita_ingrijire_urgenta() const {
+        return stare_sanatate <= 3 || greutate < 2.0;
+    }
+
     /*std::ostream &operator<<(std::ostream &os, const Animal &obj) {
         return os << "nume: " << obj.nume
                   << " | specie: " << obj.specie

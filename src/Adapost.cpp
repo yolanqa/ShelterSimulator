@@ -10,11 +10,13 @@
 #include "Exceptii.h"
 
 
+
     Adapost::Adapost(std::vector<std::unique_ptr<Padoc>>&& padocuri, const std::string &nume, double buget)
         : nume(nume), buget(buget) {
         for (auto& p : padocuri)
             this->padocuri.push_back(std::move(p));
     }
+
 
     double Adapost::cost_intretinere() const {
         return static_cast<double>(padocuri.size()) * 50;
@@ -22,10 +24,11 @@
 
 
 
-
     bool Adapost::poate_cumpara_hrana(const double pret) const {
         return buget >= cost_intretinere() + pret;
     }
+
+
     bool Adapost::adauga_padoc(const Padoc &p) {
         if (buget < cost_intretinere() + 50.0) {
             throw BugetInsuficientException();
@@ -33,6 +36,9 @@
         padocuri.push_back(std::make_unique<Padoc>(p));
         return true;
     }
+
+
+
 
     void Adapost::raport() const {
         std::cout << "Raport: " << nume << "\n";
@@ -78,12 +84,28 @@
             s->actualizare_animale(luni,este_buget);
     }
 
+
     std::ostream &operator<<(std::ostream &os, const Adapost &obj) {
         os << "Adapost: "<< obj.nume<<"\n";
         for (const auto &padoc : obj.padocuri)
                   os<<*padoc << "\n";
         return os;
     }
+
+
+std::string Adapost::cel_mai_aglomerat_padoc() const {
+        if (padocuri.empty()) return "Nu exista padocuri";
+        int max = 0;
+        std::string tip;
+        for (const auto& p : padocuri) {
+            if (p->get_numar_animale() > max) {
+                max = p->get_numar_animale();
+                tip = p->get_tip_animale();
+            }
+        }
+        return tip;
+    }
+
 
     int Adapost::total_animale() const {
         return std::accumulate(padocuri.begin(), padocuri.end(), 0,

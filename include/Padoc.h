@@ -45,6 +45,12 @@ public:
     bool exista_animal_critic() const;
     int numar_animale_adoptabile() const;
 
+
+    [[nodiscard]] const std::string& get_tip_animale() const;
+
+    double taxa_medie_adoptie() const;
+
+
     friend std::ostream &operator<<(std::ostream &os, const Padoc &obj);
 
 

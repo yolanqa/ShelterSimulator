@@ -42,17 +42,26 @@ public:
 
     void hraneste(const Hrana &h);
 
+
     void imbatraneste();
+
 
     bool este_compatibil(const Animal &other) const;
 
+
     void afiseaza_stare() const;
+
 
     bool este_de_adoptat() const;
 
+
     void imbatraneste_d(int luni_din_an);
 
+
     void stare_de_sanatate_modificata(int valoare);
+
+
+    bool necesita_ingrijire_urgenta() const;
 
 
     friend std::ostream& operator<<(std::ostream& os, const Animal& obj) {

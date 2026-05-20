@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include <ostream>
 #include <vector>
 #include <memory>
@@ -15,66 +14,92 @@
 #include "Peste.h"
 #include "Exceptii.h"
 #include "Iepure.h"
+
+
 int main() {
 
     std::string nume_adapost;
+
     double buget_adapost;
+
     int luni_simulare;
 
     std::string nume_caine;
     std::string grupa_caine;
 
+
     std::string nume_peste;
     std::string apa_peste;
+
 
     std::string nume_pisica;
     std::string rasa_pisica;
 
+
     std::string nume_ingrijitor;
     std::string post_ingrijitor;
+
+
     int vechime_ingrijitor;
     double salariu_ingrijitor;
+
 
     std::cout << "Introduceti numele adapostului: ";
     std::getline(std::cin, nume_adapost);
 
+
     std::cout << "Introduceti bugetul adapostului: ";
     std::cin >> buget_adapost;
+
 
     std::cout << "Introduceti numarul de luni pentru simulare: ";
     std::cin >> luni_simulare;
     std::cin.ignore();
 
+
+
     std::cout << "Introduceti numele noului caine: ";
     std::getline(std::cin, nume_caine);
+
+
 
     std::cout << "Introduceti grupa cainelui: ";
     std::getline(std::cin, grupa_caine);
 
+
+
     std::cout << "Introduceti numele noului peste: ";
     std::getline(std::cin, nume_peste);
+
 
     std::cout << "Introduceti tipul de apa in care traieste pestele: ";
     std::getline(std::cin, apa_peste);
 
+
     std::cout << "Introduceti numele noii pisici: ";
     std::getline(std::cin, nume_pisica);
+
 
     std::cout << "Introduceti rasa pisicii: ";
     std::getline(std::cin, rasa_pisica);
 
+
     std::cout << "Introduceti numele ingrijitorului: ";
     std::getline(std::cin, nume_ingrijitor);
+
 
     std::cout << "Introduceti postul ingrijitorului: ";
     std::getline(std::cin, post_ingrijitor);
 
+
     std::cout << "Introduceti vechimea ingrijitorului: ";
     std::cin >> vechime_ingrijitor;
+
 
     std::cout << "Introduceti salariul ingrijitorului: ";
     std::cin >> salariu_ingrijitor;
     std::cout<<"\n";
+
     std::cout << "Numarul initial de animale: " << Animal::get_nr_total_animale() << "\n";
 
     Hrana hrana("carne", 200.0, 30.0);
@@ -171,7 +196,7 @@ int main() {
 
     padoc.hraneste_toate(hrana2);
     padoc.sorteaza_dupa_stare_sanatate();
-    std::cout << "Animale sortate dupa stare de sanatate:\n";
+    std::cout << "Animale sortate dupa starea de sanatate:\n";
     std::cout << padoc << "\n";
 
 
@@ -228,5 +253,14 @@ int main() {
     std::cout << "Animale adoptabile: " << padoc.numar_animale_adoptabile() << "\n";
     std::cout << "Total animale in adapost: " << adapost.total_animale() << "\n";
 
+    std::cout << "Bella necesita ingrijire urgenta: " << animal1.necesita_ingrijire_urgenta() << "\n";
+
+    std::cout << "Taxa medie adoptie padoc: " << padoc.taxa_medie_adoptie() << " Ron\n";
+
+    std::cout << "Cel mai aglomerat padoc: " << adapost.cel_mai_aglomerat_padoc() << "\n";
+
+
+
     return 0;
+
 }

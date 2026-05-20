@@ -113,6 +113,18 @@
         return os;
     }
 
+    double Padoc::taxa_medie_adoptie() const {
+        if (vector_animale.empty()) return 0.0;
+        double total = 0;
+        for (const auto& a : vector_animale)
+            total += a->calculeaza_taxa_adoptie();
+        return total / static_cast<double>(vector_animale.size());
+    }
+
+    const std::string& Padoc::get_tip_animale() const {
+        return tip_animale;
+    }
+
     bool Padoc::exista_animal_critic() const {
         return std::find_if(vector_animale.begin(), vector_animale.end(),
             [](const std::unique_ptr<Animal>& a) {
