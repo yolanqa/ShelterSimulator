@@ -21,5 +21,5 @@ public:
 
     double calculeaza_taxa_adoptie() const override ;
 
-    ~Caine();
+    ~Caine() override = default;
 };

@@ -18,7 +18,7 @@ public:
 
     double calculeaza_taxa_adoptie() const override;
 
-    ~Peste();
+    ~Peste() override = default;
 
 
 };
