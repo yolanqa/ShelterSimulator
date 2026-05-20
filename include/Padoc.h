@@ -32,7 +32,7 @@ public:
 
     double venituri_adoptii() const;
 
-
+    void sorteaza_dupa_stare_sanatate();
 
     void adauga_adoptie(const Adoptie &a);
 

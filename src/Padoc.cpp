@@ -51,6 +51,15 @@
                 total += ad.get_taxa();
         return total;
     }
+
+    void Padoc::sorteaza_dupa_stare_sanatate() {
+        std::sort(vector_animale.begin(), vector_animale.end(),
+            [](const std::unique_ptr<Animal>& a, const std::unique_ptr<Animal>& b) {
+                return a->get_stare_sanatate() < b->get_stare_sanatate();
+            });
+    }
+
+
     void Padoc::adauga_adoptie(const Adoptie &a) {
         vector_adoptii.push_back(a);
         std::cout << "Adoptia a fost adaugata cu succes!\n";

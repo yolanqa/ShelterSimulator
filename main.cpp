@@ -165,6 +165,10 @@ int main() {
         std::cout << "Recomandat pentru adoptie: nullptr\n";
 
     padoc.hraneste_toate(hrana2);
+    padoc.sorteaza_dupa_stare_sanatate();
+    std::cout << "Animale sortate dupa stare de sanatate:\n";
+    std::cout << padoc << "\n";
+
 
     std::cout << "Venituri pentru adoptiile aprobate: " << padoc.venituri_adoptii() << " Ron\n";
 
