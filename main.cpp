@@ -14,7 +14,7 @@
 #include "Pisica.h"
 #include "Peste.h"
 #include "Exceptii.h"
-
+#include "Iepure.h"
 int main() {
 
     std::string nume_adapost;
@@ -158,6 +158,11 @@ int main() {
 
     std::cout << "Bella este data spre adoptie: " << animal1.este_de_adoptat() << "\n";
 
+    Iepure animal6("Fluffy", "iepure", 1.5, 1, 9, 8, hrana, "alb");
+    std::cout << animal6 << "\n";
+    std::cout << "Culoarea: " << animal6.get_culoare() << "\n";
+    animal6.sunet();
+    std::cout << "Taxa adoptie iepure: " << animal6.calculeaza_taxa_adoptie() << " Ron\n";
     const Animal* recomandat = padoc.animal_recomandat();
     if (recomandat != nullptr)
         std::cout << "Recomandat pentru adoptie: " << *recomandat << "\n";

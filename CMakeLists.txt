@@ -70,6 +70,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         src/Pisica.cpp
         src/Peste.cpp
         include/Exceptii.h
+        include/Iepure.h
+        src/Iepure.cpp
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}
 #    PRIVATE

@@ -14,17 +14,21 @@ public:
 
 class RasaInvalidaPisicaException : public AdapostException {
 public:
-    explicit RasaInvalidaPisicaException(const std::string& rasa)
-        : AdapostException("Rasa invalida pentru pisica: " + rasa) {}
+    explicit RasaInvalidaPisicaException(const std::string& rasa): AdapostException("Rasa invalida pentru pisica: " + rasa) {}
 };
 
 
 class ApaInvalidaException : public AdapostException {
 public:
-explicit ApaInvalidaException(const std::string& apa)
-    : AdapostException("Tip apa invalid: " + apa) {}
+    explicit ApaInvalidaException(const std::string& apa): AdapostException("Tip apa invalid: " + apa) {}
 };
 
+class CuloareInvalidaException : public AdapostException {
+public:
+
+    explicit CuloareInvalidaException(const std::string& culoare): AdapostException("Culoare invalida: " + culoare) {}
+
+};
 
 
 class CapacitatePadocException : public AdapostException {
