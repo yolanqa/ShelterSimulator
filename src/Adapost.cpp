@@ -17,6 +17,11 @@
             this->padocuri.push_back(std::move(p));
     }
 
+    int Adapost::nr_total_adaposturi = 0;
+
+    int Adapost::get_nr_total_adaposturi() {
+        return nr_total_adaposturi;
+    }
 
     double Adapost::cost_intretinere() const {
         return static_cast<double>(padocuri.size()) * 50;
@@ -114,3 +119,65 @@ std::string Adapost::cel_mai_aglomerat_padoc() const {
             });
     }
 
+    const std::string& Adapost::get_nume() const {return nume;}
+
+    void Adapost::hraneste_toate(const Hrana& h) {
+        for (auto& p : padocuri)
+            p->hraneste_toate(h);
+    }
+
+
+
+    void Adapost::adauga_animal_in_primul_padoc(const Animal& a) {
+        if (padocuri.empty()) {
+            std::cout << "Nu exista niciun padoc!\n"; return;
+        }
+        padocuri[0]->adauga_animal(a);
+    }
+
+
+
+    void Adapost::sorteaza_animale_primul_padoc() {
+        if (padocuri.empty()) {
+            std::cout << "Nu exista niciun padoc!\n";
+            return;
+        }
+        padocuri[0]->sorteaza_dupa_stare_sanatate();
+    }
+
+
+
+    void Adapost::afiseaza_animal_recomandat() const {
+        for (const auto& p : padocuri) {
+            const Animal* rec = p->animal_recomandat();
+
+            if (rec != nullptr) {
+                std::cout << "Recomandat: " << *rec << "\n";
+                return;
+            }
+
+        }
+        std::cout << "Niciun animal nu este disponibil pentru adoptie.\n";
+    }
+
+
+    int Adapost::numar_animale_adoptabile() const {
+        int total = 0;
+
+        for (const auto& p : padocuri)
+            total += p->numar_animale_adoptabile();
+
+        return total;
+    }
+
+
+
+    double Adapost::taxa_medie_adoptie() const {
+        if (padocuri.empty()) return 0.0;
+
+        double total = 0;
+        for (const auto& p : padocuri)
+            total += p->taxa_medie_adoptie();
+
+        return total / static_cast<double>(padocuri.size());
+    }

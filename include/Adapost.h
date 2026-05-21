@@ -16,6 +16,7 @@ private:
     std::vector<std::unique_ptr<Padoc>> padocuri;
     std::string nume;
     double buget;
+    static int nr_total_adaposturi;
 
 
 
@@ -31,6 +32,8 @@ public:
 
     bool poate_cumpara_hrana( double pret) const;
 
+    static int get_nr_total_adaposturi();
+
 
     void raport() const;
 
@@ -45,6 +48,29 @@ public:
 
 
     int total_animale() const;
+
+
+    [[nodiscard]] const std::string& get_nume() const;
+
+
+    void hraneste_toate(const Hrana& h);
+
+
+    void adauga_animal_in_primul_padoc(const Animal& a);
+
+
+    void sorteaza_animale_primul_padoc();
+
+
+    void afiseaza_animal_recomandat() const;
+
+
+    int numar_animale_adoptabile() const;
+
+
+    double taxa_medie_adoptie() const;
+
+
 
 
     friend std::ostream &operator<<(std::ostream &os, const Adapost &obj);
