@@ -25,6 +25,7 @@ class Simulator {
     void meniuAdoptii();
     void meniuStatistici();
     void meniuSimulare();
+    void meniuExtra();
 
 
 

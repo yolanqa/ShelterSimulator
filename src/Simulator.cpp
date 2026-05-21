@@ -2,12 +2,18 @@
 // Created by Lenovo ThinkBook on 5/21/2026.
 //
 
-#include "SImulator.h"
+#include "Animal.h"
+#include "Padoc.h"
+#include "Adoptie.h"
+#include "Hrana.h"
+#include "Adapost.h"
+#include "Ingrijitor.h"
 #include "Caine.h"
 #include "Pisica.h"
 #include "Peste.h"
-#include "Iepure.h"
 #include "Exceptii.h"
+#include "Iepure.h"
+#include"Simulator.h"
 #include <iostream>
 
     void Simulator::titlu(const std::string& text) {
@@ -25,14 +31,14 @@
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Input invalid!\n" << mesaj;
         }
-        std::cin.ignore();
+
         return val;
     }
 
     std::string Simulator::citesteString(const std::string& mesaj) {
         std::string val;
         std::cout << mesaj;
-
+        std::cin.ignore();
         std::getline(std::cin, val);
         return val;
     }
@@ -101,6 +107,7 @@
             }
             case 3:
                 adapost->hraneste_toate(hrana_default);
+                adapost->sorteaza_animale_primul_padoc();
                 std::cout << "Animale hranite!\n";
                 break;
             case 4:
@@ -142,6 +149,8 @@
         std::cout << "Cel mai aglomerat padoc: " << adapost->cel_mai_aglomerat_padoc() << "\n";
         std::cout << "Total adaposturi create: " << Adapost::get_nr_total_adaposturi() << "\n";
         std::cout << "Total animale create: " << Animal::get_contor_id() << "\n";
+        std::cout << "Total animale inregistrate: " << Animal::get_nr_total_animale() << "\n";
+        std::cout << "ID contor: " << Animal::get_contor_id() << "\n";
     }
 
     void Simulator::meniuSimulare() {
@@ -153,6 +162,7 @@
     }
 
     void Simulator::ruleaza() {
+        adapost->afiseaza_padocuri();
         while (activ) {
             titlu("MENIU PRINCIPAL - " + adapost->get_nume());
             std::cout << "1. Gestiune animale\n"
@@ -160,6 +170,7 @@
                     << "3. Statistici\n"
                     << "4. Simuleaza trecerea timpului\n"
                     << "5. Afiseaza padocuri\n"
+                    << "6. Extra\n"
                     << "0. Iesire\n";
             int opt = citesteInt("> ");
             switch (opt) {
@@ -168,11 +179,81 @@
                 case 3: meniuStatistici(); break;
                 case 4: meniuSimulare();   break;
                 case 5: adapost->afiseaza_padocuri(); break;
+                case 6: meniuExtra(); break;
                 case 0:
                     activ = false;
                     std::cout << "Pa pa!\n";
                     break;
                 default: invalid();
             }
+        }
+    }
+
+    void Simulator::meniuExtra() {
+        titlu("FUNCTII EXTRA");
+        std::cout << "1. Verifica compatibilitate animale\n"
+                  << "2. Genereaza contract adoptie\n"
+                  << "3. Verifica ingrijitor\n"
+                  << "4. Statistici extra\n"
+                  << "5. Verifica simulare\n"
+                  << "0. Inapoi\n";
+        int opt = citesteInt("> ");
+        switch (opt) {
+            case 1: {
+                Caine c1("Test1", "caine", 20.0, 2, 8, 7, hrana_default, "paza");
+                Caine c2("Test2", "caine", 15.0, 3, 4, 5, hrana_default, "frumusete");
+                std::cout << "Compatibili: " << c1.este_compatibil(c2) << "\n";
+                std::cout << "Functie verificare compatibilitate apelata.\n";
+                break;
+            }
+            case 2: {
+                Adoptie ad("Test", "2026-01-01", false, 100.0, "Test");
+                ad.aprobare();
+                ad.genereaza_contract();
+                break;
+            }
+            case 3: {
+                Ingrijitor ing("Test", 5, "veterinar", 3000.0);
+                std::cout << ing << "\n";
+                std::cout << "Vechime: " << ing.vechime_in_adapost() << "\n";
+                ing.afisare_salariu();
+                break;
+            }
+            case 4: {
+                std::cout << "Animale adoptabile: " << adapost->numar_animale_adoptabile() << "\n";
+                std::cout << "Taxa medie adoptie: " << adapost->taxa_medie_adoptie() << " Ron\n";
+                std::cout << "Cel mai aglomerat padoc: " << adapost->cel_mai_aglomerat_padoc() << "\n";
+                std::cout << "Poate cumpara hrana: " << adapost->poate_cumpara_hrana(200.0) << "\n";
+                break;
+            }
+
+            case 5: {
+                Caine c1("Test1", "caine", 20.0, 2, 8, 7, hrana_default, "paza");
+                Caine c2("Test2", "caine", 15.0, 3, 4, 5, hrana_default, "frumusete");
+                c1.afiseaza_stare();
+                c1.imbatraneste();
+                std::cout << "Necesita ingrijire: " << c1.necesita_ingrijire_urgenta() << "\n";
+                std::cout << "Compatibili: " << c1.este_compatibil(c2) << "\n";
+                std::cout << "Greutate: " << c1.get_greutate() << "\n";
+                std::cout << "ID: " << c1.get_id() << "\n";
+                std::cout << "Specie: " << c1.get_specie() << "\n";
+                std::cout << "Grupa: " << c1.get_grupa() << "\n";
+                Pisica p1("TestP", "pisica", 4.0, 2, 8, 6, hrana_default, "siameza");
+                std::cout << "Rasa: " << p1.get_rasa() << "\n";
+                Peste pe1("TestPe", "peste", 0.5, 1, 9, 3, hrana_default, "dulce");
+                std::cout << "Apa: " << pe1.get_apa() << "\n";
+                Iepure i1("TestI", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
+                std::cout << "Culoare: " << i1.get_culoare() << "\n";
+                adapost->sorteaza_animale_primul_padoc();
+                adapost->raport();
+                Padoc p_test({}, {}, 3, "test", 100.0);
+                Adoptie ad_test("Ion", "2026-01-01", true, 100.0, "Rex");
+                p_test.adauga_adoptie(ad_test);
+                std::cout << "Venituri: " << p_test.venituri_adoptii() << " Ron\n";
+                std::cout << "Exista animal critic: " << p_test.exista_animal_critic() << "\n";
+                break;
+            }
+            case 0: break;
+            default: invalid();
         }
     }

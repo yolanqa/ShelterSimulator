@@ -72,7 +72,7 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         include/Exceptii.h
         include/Iepure.h
         src/Iepure.cpp
-        include/SImulator.h
+        include/Simulator.h
         src/Simulator.cpp
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}

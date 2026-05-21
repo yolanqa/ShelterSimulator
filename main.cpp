@@ -14,7 +14,7 @@
 #include "Peste.h"
 #include "Exceptii.h"
 #include "Iepure.h"
-#include"SImulator.h"
+#include"Simulator.h"
 
 
 int main() {
@@ -25,6 +25,7 @@ int main() {
     std::getline(std::cin, nume_adapost);
     std::cout << "Buget initial: ";
     std::cin >> buget;
+    std::cin.ignore();
 
     Hrana hrana("carne", 200.0, 30.0);
     Simulator sim(nume_adapost, buget, hrana);
