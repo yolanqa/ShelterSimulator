@@ -217,6 +217,8 @@
                 std::cout << ing << "\n";
                 std::cout << "Vechime: " << ing.vechime_in_adapost() << "\n";
                 ing.afisare_salariu();
+                Padoc p_temp({}, {}, 5, "temp", 100.0);
+                ing.alocare_padocuri(p_temp, hrana_default);
                 break;
             }
             case 4: {
