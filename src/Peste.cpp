@@ -26,15 +26,13 @@
     }
 
     double Peste::calculeaza_taxa_adoptie() const {
-        double taxa_baza = 50.0;
-        taxa_baza += get_varsta() * 2.0;
-        taxa_baza -= (10 - get_stare_sanatate()) * 5.0;
-        if (apa == "sarata") taxa_baza += 100.0;
-        if (apa == "dulce") taxa_baza += 30.0;
-        if (taxa_baza > 0)
-            return taxa_baza;
-
-        return 0;
+        if (apa == "sarata") {
+            double taxa = 150.0;
+            if (get_stare_sanatate() >= 8)
+                taxa += 50.0;
+            return taxa;
+        }
+        return 50.0 + get_stare_sanatate() * 5.0;
     }
     void Peste::print(std::ostream& os) const {
         Animal::print(os);

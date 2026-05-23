@@ -23,16 +23,34 @@
     }
 
     double Pisica::calculeaza_taxa_adoptie() const {
-        double taxa_baza = 100.0;
-        taxa_baza += get_varsta() * 3.0;
-        taxa_baza -= (10 - get_stare_sanatate()) * 8.0;
-        if (rasa == "persana") taxa_baza += 150.0;
-        if (rasa == "siameza") taxa_baza += 100.0;
-        if (rasa == "bengaleza") taxa_baza += 200.0;
-        if (taxa_baza > 0)
-            return taxa_baza;
+        double m = 1.0;
+        if (rasa == "bengaleza") m = 5.0;
+        else if (rasa == "persana") m = 2.5;
+        else if (rasa == "siameza") m = 1.7;
+        double taxa = 70.0 * m;
+        if (get_stare_sanatate() < 4)
+            taxa /= 2;
+        return taxa;
+    }
 
-        return 0;
+    void Pisica::aplica_tratament(Animal* a) {
+        Pisica* p = dynamic_cast<Pisica*>(a);
+
+        if (p != nullptr) {
+            if (p->get_rasa() == "persana") {
+                a->stare_de_sanatate_modificata(13);
+                std::cout << "Tratament pentru pisica persana: sanatate+13\n";
+
+            } else if (p->get_rasa() == "siameza") {
+                a->stare_de_sanatate_modificata(10);
+                std::cout << "Tratament pentru pisica siameza: sanatate+10\n";
+            } else {
+                a->stare_de_sanatate_modificata(5);
+                std::cout << "Tratament standard pentru pisica: sanatate+5.\n";
+            }
+        } else {
+            std::cout << "Tratamentul nu se aplica - nu e pisica\n";
+        }
     }
     void Pisica::print(std::ostream& os) const {
         Animal::print(os);

@@ -34,6 +34,7 @@ public:
     virtual Animal* clone() const =0;
     virtual void sunet()const =0;
     virtual double calculeaza_taxa_adoptie() const=0;
+    virtual void aplica_tratament(Animal* a);
     static int get_nr_total_animale();
 
 
@@ -46,26 +47,12 @@ public:
     [[nodiscard]] int get_varsta() const;
 
     void hraneste(const Hrana &h);
-
-
     void imbatraneste();
-
-
     bool este_compatibil(const Animal &other) const;
-
-
     void afiseaza_stare() const;
-
-
     bool este_de_adoptat() const;
-
-
     void imbatraneste_d(int luni_din_an);
-
-
     void stare_de_sanatate_modificata(int valoare);
-
-
     bool necesita_ingrijire_urgenta() const;
 
 
@@ -73,6 +60,5 @@ public:
         obj.print(os);
         return os;
     }
-
     virtual ~Animal(){};
 };

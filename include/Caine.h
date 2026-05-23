@@ -20,6 +20,7 @@ public:
     Animal* clone()const override ;
 
     double calculeaza_taxa_adoptie() const override ;
+    void aplica_tratament(Animal* a) override;
 
     ~Caine() override = default;
 };

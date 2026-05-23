@@ -4,8 +4,6 @@
 
 #include "Caine.h"
 
-
-
     const std::string& Caine::get_grupa() const { return grupa; }
     Caine::Caine(const std::string& nume, const std::string& specie,  double greutate,  int varsta,  int stare_sanatate, int nivel_sociabilitate, const Hrana& hrana_preferata, const std::string& grupa): Animal(nume, specie, greutate, varsta, stare_sanatate, nivel_sociabilitate, hrana_preferata), grupa(grupa){
         if (grupa.empty() || grupa == "null")
@@ -19,26 +17,34 @@
             std::cout << "Cainele nu scoate niciun sunet!\n";
     }
 
-
     Animal* Caine::clone()const {
         return new Caine(*this);
     }
 
     double Caine::calculeaza_taxa_adoptie() const {
         double taxa_baza = 150.0;
-
         taxa_baza += get_varsta() * 5.0;
         taxa_baza -= (10 - get_stare_sanatate()) * 10.0;
         if (grupa == "paza") taxa_baza += 50.0;
         if (grupa == "frumusete") taxa_baza += 100.0;
         if (taxa_baza > 0)
             return taxa_baza;
-
         return 0;
     }
+
+    void Caine::aplica_tratament(Animal* a) {
+        Caine* c = dynamic_cast<Caine*>(a);
+        if (c != nullptr && c->grupa == "paza") {
+            a->stare_de_sanatate_modificata(10);
+            std::cout << "Tratamentul pentru cainele de paza este aplicat.\n";}
+
+        std::cout << "Animalul nu este caine\n";
+    }
+
     void Caine::print(std::ostream& os) const {
         Animal::print(os);
         os << " | grupa: " << grupa;
     }
+
 
     //Caine::~Caine() = default;
