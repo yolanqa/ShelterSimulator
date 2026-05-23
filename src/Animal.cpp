@@ -36,6 +36,7 @@
     [[nodiscard]] int Animal::get_nivel_sociabilitate() const { return nivel_sociabilitate; }
     [[nodiscard]] const std::string& Animal::get_nume() const { return nume;}
     [[nodiscard]] const std::string& Animal::get_specie() const { return specie; }
+    int Animal::get_varsta() const { return varsta; }
 
     void Animal::hraneste(const Hrana &h) {
         greutate += h.get_valoare_nutritiva() * 0.1;

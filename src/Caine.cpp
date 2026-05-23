@@ -26,12 +26,18 @@
 
     double Caine::calculeaza_taxa_adoptie() const {
         double taxa_baza = 150.0;
-        if (grupa == "paza") return taxa_baza + 50.0;
-        if (grupa == "frumusete") return taxa_baza + 100.0;
-        return taxa_baza;
+
+        taxa_baza += get_varsta() * 5.0;
+        taxa_baza -= (10 - get_stare_sanatate()) * 10.0;
+        if (grupa == "paza") taxa_baza += 50.0;
+        if (grupa == "frumusete") taxa_baza += 100.0;
+        if (taxa_baza > 0)
+            return taxa_baza;
+
+        return 0;
     }
     void Caine::print(std::ostream& os) const {
-        Animal::print(os);  // apeleaza baza
+        Animal::print(os);
         os << " | grupa: " << grupa;
     }
 

@@ -203,7 +203,14 @@
                 Caine c1("Test1", "caine", 20.0, 2, 8, 7, hrana_default, "paza");
                 Caine c2("Test2", "caine", 15.0, 3, 4, 5, hrana_default, "frumusete");
                 std::cout << "Compatibili: " << c1.este_compatibil(c2) << "\n";
-                std::cout << "Functie verificare compatibilitate apelata.\n";
+
+                Animal* a = new Caine("Rex", "caine", 25.0, 3, 8, 7, hrana_default, "paza");
+                const Caine* c = dynamic_cast<const Caine*>(a);
+                if (c != nullptr)
+                    std::cout << "Este caine din grupa: " << c->get_grupa() << "\n";
+                else
+                    std::cout << "Nu este caine\n";
+                delete a;
                 break;
             }
             case 2: {

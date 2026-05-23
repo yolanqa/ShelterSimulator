@@ -26,9 +26,14 @@ Animal* Iepure::clone() const {
 
 double Iepure::calculeaza_taxa_adoptie() const {
     double taxa_baza = 80.0;
-    if (culoare == "alb") return taxa_baza + 50.0;
-    if (culoare == "negru") return taxa_baza + 30.0;
-    return taxa_baza;
+    taxa_baza += get_varsta() * 2.0;
+    taxa_baza -= (10 - get_stare_sanatate()) * 5.0;
+    if (culoare == "alb") taxa_baza += 50.0;
+    if (culoare == "negru") taxa_baza += 30.0;
+    if (taxa_baza > 0)
+        return taxa_baza;
+
+    return 0;
 }
 
 void Iepure::print(std::ostream& os) const {

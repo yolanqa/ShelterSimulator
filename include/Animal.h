@@ -43,7 +43,7 @@ public:
     [[nodiscard]] int get_nivel_sociabilitate() const;
     [[nodiscard]] const std::string& get_nume() const;
     [[nodiscard]] const std::string& get_specie() const;
-
+    [[nodiscard]] int get_varsta() const;
 
     void hraneste(const Hrana &h);
 

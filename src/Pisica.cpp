@@ -24,10 +24,15 @@
 
     double Pisica::calculeaza_taxa_adoptie() const {
         double taxa_baza = 100.0;
-        if (rasa == "persana") return taxa_baza + 150.0;
-        if (rasa == "siameza") return taxa_baza + 100.0;
-        if (rasa == "bengaleza") return taxa_baza + 200.0;
-        return taxa_baza;
+        taxa_baza += get_varsta() * 3.0;
+        taxa_baza -= (10 - get_stare_sanatate()) * 8.0;
+        if (rasa == "persana") taxa_baza += 150.0;
+        if (rasa == "siameza") taxa_baza += 100.0;
+        if (rasa == "bengaleza") taxa_baza += 200.0;
+        if (taxa_baza > 0)
+            return taxa_baza;
+
+        return 0;
     }
     void Pisica::print(std::ostream& os) const {
         Animal::print(os);
