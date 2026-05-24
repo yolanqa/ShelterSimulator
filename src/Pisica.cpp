@@ -34,7 +34,7 @@
     }
 
     void Pisica::aplica_tratament(Animal* a) {
-        Pisica* p = dynamic_cast<Pisica*>(a);
+        const Pisica* p = dynamic_cast<Pisica*>(a);
 
         if (p != nullptr) {
             if (p->get_rasa() == "persana") {

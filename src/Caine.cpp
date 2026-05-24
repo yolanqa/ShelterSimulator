@@ -33,7 +33,7 @@
     }
 
     void Caine::aplica_tratament(Animal* a) {
-        Caine* c = dynamic_cast<Caine*>(a);
+        const Caine* c = dynamic_cast<Caine*>(a);
         if (c != nullptr && c->grupa == "paza") {
             a->stare_de_sanatate_modificata(10);
             std::cout << "Tratamentul pentru cainele de paza este aplicat.\n";}
