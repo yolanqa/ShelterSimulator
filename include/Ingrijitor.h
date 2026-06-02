@@ -8,7 +8,11 @@
 #include <string>
 #include "Padoc.h"
 #include "Hrana.h"
+#include "Caine.h"
+#include "Pisica.h"
+#include "Peste.h"
 
+#include "Iepure.h"
 class Ingrijitor {
     char* nume;
     int vechime;
@@ -29,6 +33,7 @@ public:
     ~Ingrijitor();
 
     void afisare_salariu() const;
+    void aplica_tratament(Animal* a) const;
 
     bool vechime_in_adapost()const;
 

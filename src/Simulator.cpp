@@ -226,6 +226,10 @@
                 ing.afisare_salariu();
                 Padoc p_temp({}, {}, 5, "temp", 100.0);
                 ing.alocare_padocuri(p_temp, hrana_default);
+                Ingrijitor ing1("Stefan", 5, "veterinar", 3000.0);
+                Animal* pacient = new Caine("Rex", "caine", 25.0, 3, 4, 7, hrana_default, "paza");
+                ing.aplica_tratament(pacient);
+                delete pacient;
                 break;
             }
             case 4: {

@@ -61,6 +61,35 @@
         p.hraneste_toate(h);
     }
 
+    void Ingrijitor::aplica_tratament(Animal* a) const {
+        const Caine* c = dynamic_cast<const Caine*>(a);
+        if (c != nullptr) {
+            a->stare_de_sanatate_modificata(10);
+            return;
+        }
+        const Pisica* p = dynamic_cast<const Pisica*>(a);
+        if (p != nullptr) {
+            a->stare_de_sanatate_modificata(8);
+            return;
+        }
+
+        const Peste* pe = dynamic_cast<const Peste*>(a);
+        if (pe !=nullptr) {
+            a->stare_de_sanatate_modificata(12);
+            return;
+        }
+
+        const Iepure* i = dynamic_cast<Iepure*>(a);
+        if (i!=nullptr) {
+            a->stare_de_sanatate_modificata(3);
+            std::cout<<"Iepurele este mai bolnavicios";
+            return;
+        }
+
+        a->stare_de_sanatate_modificata(5);
+        std::cout << "Ingrijitorul a aplicat tratament general: +5 sanatate.\n";
+    }
+
     std::ostream & operator<<(std::ostream &os, const Ingrijitor &obj) {
          os << "nume: " << (obj.nume?obj.nume:"(null)")
             << " | vechime: " << obj.vechime
