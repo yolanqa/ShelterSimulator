@@ -37,6 +37,7 @@ public:
     void adauga_adoptie(const Adoptie &a);
 
     [[nodiscard]] int get_numar_animale() const;
+    bool are_loc_pentru(const Animal& a) const;
 
     const Animal* animal_recomandat() const;
 

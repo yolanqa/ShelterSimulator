@@ -88,8 +88,8 @@
 
 
 
-    bool Padoc::adauga_animal(const Animal &a) {
-        if (static_cast<int>(vector_animale.size()) >= capacitate) {
+    bool Padoc::adauga_animal(const Animal& a) {
+        if (!are_loc_pentru(a)) {
             throw CapacitatePadocException();
         }
         vector_animale.push_back(std::unique_ptr<Animal>(a.clone()));
@@ -123,6 +123,15 @@
 
     const std::string& Padoc::get_tip_animale() const {
         return tip_animale;
+    }
+    bool Padoc::are_loc_pentru(const Animal& a) const {
+        int locuri_necesare = 1;
+        if (a.get_greutate() > 30.0)
+            locuri_necesare = 3;
+        else if (a.get_greutate() > 15.0)
+            locuri_necesare = 2;
+
+        return static_cast<int>(vector_animale.size()) + locuri_necesare <= capacitate;
     }
 
     bool Padoc::exista_animal_critic() const {
