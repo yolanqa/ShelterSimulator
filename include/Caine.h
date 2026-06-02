@@ -5,6 +5,7 @@
 #pragma once
 #include "Animal.h"
 #include "Exceptii.h"
+#include "Iepure.h"
 class Caine:public Animal{
     std::string grupa;
     //daca e de rasa in domeniul asta exista diferite grupe in functie de ce menire are cainele (de paza, de frumusete etc)
@@ -20,7 +21,7 @@ public:
     Animal* clone()const override ;
 
     double calculeaza_taxa_adoptie() const override ;
-    void aplica_tratament(Animal* a) override;
+    void se_joaca_cu(const Animal* a) const override;
 
     ~Caine() override = default;
 };

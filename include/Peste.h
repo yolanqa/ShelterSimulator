@@ -15,6 +15,7 @@ public:
     const std::string& get_apa() const;
     void sunet() const override;
     Animal* clone() const override;
+    void se_joaca_cu(const Animal* a) const override;
 
     double calculeaza_taxa_adoptie() const override;
 

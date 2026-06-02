@@ -19,7 +19,7 @@ public:
     Animal* clone() const override;
 
     double calculeaza_taxa_adoptie() const override;
-    void aplica_tratament(Animal* a) override;
+    void se_joaca_cu(const Animal* a) const override;
 
     ~Pisica() override = default;
 

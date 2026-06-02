@@ -33,28 +33,20 @@
         return taxa;
     }
 
-    void Pisica::aplica_tratament(Animal* a) {
-        const Pisica* p = dynamic_cast<Pisica*>(a);
 
-        if (p != nullptr) {
-            if (p->get_rasa() == "persana") {
-                a->stare_de_sanatate_modificata(13);
-                std::cout << "Tratament pentru pisica persana: sanatate+13\n";
-
-            } else if (p->get_rasa() == "siameza") {
-                a->stare_de_sanatate_modificata(10);
-                std::cout << "Tratament pentru pisica siameza: sanatate+10\n";
-            } else {
-                a->stare_de_sanatate_modificata(5);
-                std::cout << "Tratament standard pentru pisica: sanatate+5.\n";
-            }
-        } else {
-            std::cout << "Tratamentul nu se aplica - nu e pisica\n";
-        }
-    }
     void Pisica::print(std::ostream& os) const {
         Animal::print(os);
         os << " | rasa: " << rasa;
+    }
+
+
+    void Pisica::se_joaca_cu(const Animal* a) const {
+        const Pisica* p = dynamic_cast<const Pisica*>(a);
+        if (p != nullptr) {
+            std::cout << get_nume() << " se joaca cu o pisica : " << a->get_nume() << "\n";
+        } else {
+            std::cout << get_nume() << " ignora " << a->get_nume() << "\n";
+        }
     }
 
     //Pisica::~Pisica=default;

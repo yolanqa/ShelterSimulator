@@ -34,6 +34,10 @@
         }
         return 50.0 + get_stare_sanatate() * 5.0;
     }
+
+    void Peste::se_joaca_cu(const Animal* a) const {
+        std::cout << get_nume() << " nu se joaca - pestii stau in apa\n";
+    }
     void Peste::print(std::ostream& os) const {
         Animal::print(os);
         os << " | apa: " << apa;

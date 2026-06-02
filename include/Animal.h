@@ -34,7 +34,7 @@ public:
     virtual Animal* clone() const =0;
     virtual void sunet()const =0;
     virtual double calculeaza_taxa_adoptie() const=0;
-    virtual void aplica_tratament(Animal* a);
+    virtual void se_joaca_cu(const Animal* a) const;
     static int get_nr_total_animale();
 
 

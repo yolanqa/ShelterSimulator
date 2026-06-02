@@ -261,14 +261,15 @@
                 std::cout << "Venituri: " << p_test.venituri_adoptii() << " Ron\n";
                 std::cout << "Exista animal critic: " << p_test.exista_animal_critic() << "\n";
 
-                Animal* a1 = new Caine("Rex", "caine", 25.0, 3, 4, 7, hrana_default, "paza");
-                Animal* a2 = new Pisica("Mia", "pisica", 4.0, 2, 3, 5, hrana_default, "persana");
-                Animal* a3 = new Peste("Nemo", "peste", 0.5, 1, 3, 3, hrana_default, "dulce");
-                Animal* a4 = new Iepure("Fluffy", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
-                a1->aplica_tratament(a1);
-                a2->aplica_tratament(a2);
-                a3->aplica_tratament(a3);
-                a4->aplica_tratament(a4);
+                Animal* a1 = new Caine("Max", "caine", 25.0, 3, 8, 7, hrana_default, "paza");
+                Animal* a2 = new Iepure("Gogonas", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
+                Animal* a3 = new Pisica("Mia", "pisica", 4.0, 2, 8, 6, hrana_default, "siameza");
+                Animal* a4 = new Peste("Nemo", "peste", 0.5, 1, 9, 3, hrana_default, "dulce");
+                a1->se_joaca_cu(a2);
+                a1->se_joaca_cu(a3);
+                a3->se_joaca_cu(a3);
+                a4->se_joaca_cu(a1);
+                a2->se_joaca_cu(a1);
                 delete a1;
                 delete a2;
                 delete a3;

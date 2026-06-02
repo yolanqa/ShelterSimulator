@@ -82,9 +82,8 @@
         return stare_sanatate <= 3 || greutate < 2.0;
     }
 
-    void Animal::aplica_tratament(Animal* a) {
-        a->stare_de_sanatate_modificata(5);
-        std::cout << "Tratamentul este aplicat.\n";
+    void Animal::se_joaca_cu(const Animal* a) const {
+        std::cout << get_nume() << " nu se joaca cu " << a->get_nume() << "\n";
     }
 
     /*std::ostream &operator<<(std::ostream &os, const Animal &obj) {
