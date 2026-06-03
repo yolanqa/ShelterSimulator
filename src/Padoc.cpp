@@ -95,6 +95,14 @@
         vector_animale.push_back(std::unique_ptr<Animal>(a.clone()));
         return true;
     }
+    const Animal* Padoc::animal_cel_mai_batran() const {
+        if (vector_animale.empty()) return nullptr;
+        auto it = std::max_element(vector_animale.begin(), vector_animale.end(),
+            [](const std::unique_ptr<Animal>& a, const std::unique_ptr<Animal>& b) {
+                return a->get_varsta() < b->get_varsta();
+            });
+        return it->get();
+    }
 
 
     std::ostream &operator<<(std::ostream &os, const Padoc &obj) {

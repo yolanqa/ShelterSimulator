@@ -151,6 +151,7 @@
         std::cout << "Total animale create: " << Animal::get_contor_id() << "\n";
         std::cout << "Total animale inregistrate: " << Animal::get_nr_total_animale() << "\n";
         std::cout << "ID contor: " << Animal::get_contor_id() << "\n";
+        std::cout << "Cel mai batran animal: " << adapost->animal_cel_mai_batran() << "\n";
     }
 
     void Simulator::meniuSimulare() {

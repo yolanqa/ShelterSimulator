@@ -38,6 +38,7 @@ public:
 
     [[nodiscard]] int get_numar_animale() const;
     bool are_loc_pentru(const Animal& a) const;
+    const Animal* animal_cel_mai_batran() const;
 
     const Animal* animal_recomandat() const;
 

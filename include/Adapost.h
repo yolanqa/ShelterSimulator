@@ -25,7 +25,7 @@ public:
 
 
     double cost_intretinere() const;
-
+    std::string animal_cel_mai_batran() const;
 
     bool adauga_padoc(const Padoc &p);
 

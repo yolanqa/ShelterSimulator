@@ -22,7 +22,18 @@
     int Adapost::get_nr_total_adaposturi() {
         return nr_total_adaposturi;
     }
-
+    std::string Adapost::animal_cel_mai_batran() const {
+        int varsta_max = 0;
+        std::string nume_max = "Niciunul";
+        for (const auto& p : padocuri) {
+            const Animal* a = p->animal_cel_mai_batran();
+            if (a != nullptr && a->get_varsta() > varsta_max) {
+                varsta_max = a->get_varsta();
+                nume_max = a->get_nume();
+            }
+        }
+        return nume_max;
+    }
     double Adapost::cost_intretinere() const {
         return static_cast<double>(padocuri.size()) * 50;
     }
