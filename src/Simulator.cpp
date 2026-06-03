@@ -226,7 +226,7 @@
                 ing.afisare_salariu();
                 Padoc p_temp({}, {}, 5, "temp", 100.0);
                 ing.alocare_padocuri(p_temp, hrana_default);
-                Ingrijitor ing1("Stefan", 5, "veterinar", 3000.0);
+                //Ingrijitor ing1("Stefan", 5, "veterinar", 3000.0);
                 Animal* pacient = new Caine("Rex", "caine", 25.0, 3, 4, 7, hrana_default, "paza");
                 ing.aplica_tratament(pacient);
                 delete pacient;
@@ -278,7 +278,14 @@
                 delete a2;
                 delete a3;
                 delete a4;
+
+
+                Hrana h_morcovi("morcovi", 50.0, 10.0);
+                Iepure i_test("Fluffy", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
+                std::cout << "Fluffy accepta morcovi: " << i_test.accepta_hrana(h_morcovi) << "\n";
+                std::cout << "Fluffy accepta carne: " << i_test.accepta_hrana(hrana_default) << "\n";
                 break;
+
             }
             case 0: break;
             default: invalid();
