@@ -62,6 +62,7 @@
                 << "3. Hraneste toate animalele\n"
                 << "4. Sorteaza dupa stare sanatate\n"
                 << "0. Inapoi\n";
+
         int opt = citesteInt("> ");
         switch (opt) {
             case 1: {
@@ -198,6 +199,7 @@
                   << "4. Statistici extra\n"
                   << "5. Verifica simulare\n"
                   << "0. Inapoi\n";
+
         int opt = citesteInt("> ");
         switch (opt) {
             case 1: {
@@ -246,23 +248,28 @@
                 Caine c2("Test2", "caine", 15.0, 3, 4, 5, hrana_default, "frumusete");
                 c1.afiseaza_stare();
                 c1.imbatraneste();
+
                 std::cout << "Necesita ingrijire: " << c1.necesita_ingrijire_urgenta() << "\n";
                 std::cout << "Compatibili: " << c1.este_compatibil(c2) << "\n";
                 std::cout << "Greutate: " << c1.get_greutate() << "\n";
                 std::cout << "ID: " << c1.get_id() << "\n";
                 std::cout << "Specie: " << c1.get_specie() << "\n";
                 std::cout << "Grupa: " << c1.get_grupa() << "\n";
+
                 Pisica p1("TestP", "pisica", 4.0, 2, 8, 6, hrana_default, "siameza");
                 std::cout << "Rasa: " << p1.get_rasa() << "\n";
                 Peste pe1("TestPe", "peste", 0.5, 1, 9, 3, hrana_default, "dulce");
                 std::cout << "Apa: " << pe1.get_apa() << "\n";
                 Iepure i1("TestI", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
+
                 std::cout << "Culoare: " << i1.get_culoare() << "\n";
+
                 adapost->sorteaza_animale_primul_padoc();
                 adapost->raport();
                 Padoc p_test({}, {}, 3, "test", 100.0);
                 Adoptie ad_test("Ion", "2026-01-01", true, 100.0, "Rex");
                 p_test.adauga_adoptie(ad_test);
+
                 std::cout << "Venituri: " << p_test.venituri_adoptii() << " Ron\n";
                 std::cout << "Exista animal critic: " << p_test.exista_animal_critic() << "\n";
 
@@ -270,6 +277,7 @@
                 Animal* a2 = new Iepure("Gogonas", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
                 Animal* a3 = new Pisica("Mia", "pisica", 4.0, 2, 8, 6, hrana_default, "siameza");
                 Animal* a4 = new Peste("Nemo", "peste", 0.5, 1, 9, 3, hrana_default, "dulce");
+
                 a1->se_joaca_cu(a2);
                 a1->se_joaca_cu(a3);
                 a3->se_joaca_cu(a3);
@@ -281,10 +289,16 @@
                 delete a4;
 
 
+                std::cout << "Categoria hranei: " << hrana_default.categorie_hrana() << "\n";
                 Hrana h_morcovi("morcovi", 50.0, 10.0);
                 Iepure i_test("Fluffy", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
                 std::cout << "Fluffy accepta morcovi: " << i_test.accepta_hrana(h_morcovi) << "\n";
                 std::cout << "Fluffy accepta carne: " << i_test.accepta_hrana(hrana_default) << "\n";
+
+
+                Hrana h_peste("mancare_peste", 30.0, 15.0);
+                std::cout << "Nemo accepta mancare_peste: " << pe1.accepta_hrana(h_peste) << "\n";
+                std::cout << "c1 accepta carne: " << c1.accepta_hrana(hrana_default) << "\n";
                 break;
 
             }
