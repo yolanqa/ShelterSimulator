@@ -19,12 +19,3 @@
                   << " cantitate: " << obj.cantitate
                   << " valoare_nutritiva: " << obj.valoare_nutritiva;
     }
-    std::string Hrana::categorie_hrana() const {
-        if (valoare_nutritiva >= 25.0 && cantitate >= 150.0)
-            return "premium";
-        if (valoare_nutritiva >= 15.0 && cantitate >= 80.0)
-            return "standard";
-        if (valoare_nutritiva < 10.0)
-            return "slaba";
-        return "medie";
-    }
