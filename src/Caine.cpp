@@ -44,6 +44,12 @@
         }
     }
 
+    bool Caine::accepta_hrana(const Hrana& h) const {
+        if (h.get_tip() == "carne" || h.get_tip() == "boabe") return true;
+        std::cout << get_nume() << " refuza " << h.get_tip() << "\n";
+        return false;
+    }
+
     void Caine::print(std::ostream& os) const {
         Animal::print(os);
         os << " | grupa: " << grupa;

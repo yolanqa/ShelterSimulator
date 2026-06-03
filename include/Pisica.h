@@ -17,7 +17,7 @@ public:
     void sunet() const override;
 
     Animal* clone() const override;
-
+    bool accepta_hrana(const Hrana& h) const override;
     double calculeaza_taxa_adoptie() const override;
     void se_joaca_cu(const Animal* a) const override;
 

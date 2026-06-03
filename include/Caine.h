@@ -16,7 +16,7 @@ public:
     const std::string& get_grupa() const;
     Caine(const std::string& nume, const std::string& specie, double greutate, int varsta, int stare_sanatate, int nivel_sociabilitate, const Hrana& hrana_preferata, const std::string& grupa);
     void sunet()const override ;
-
+    bool accepta_hrana(const Hrana& h) const override;
 
     Animal* clone()const override ;
 

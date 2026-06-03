@@ -14,7 +14,7 @@ private:
 
 public:
 
-
+    [[nodiscard]] const std::string& get_tip() const;
     Hrana(const std::string &tip, const double cantitate, const double valoare_nutritiva);
     [[nodiscard]] double get_valoare_nutritiva() const;
 

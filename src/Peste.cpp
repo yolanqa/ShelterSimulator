@@ -34,6 +34,12 @@
         }
         return 50.0 + get_stare_sanatate() * 5.0;
     }
+    bool Peste::accepta_hrana(const Hrana& h) const {
+        if (h.get_tip() == "mancare_de_peste" || h.get_tip() == "alge")
+            return true;
+        std::cout << get_nume() << " refuza " << h.get_tip() << "\n";
+        return false;
+    }
 
     void Peste::se_joaca_cu(const Animal* a) const {
         std::cout << a->get_nume() << " -> nu se joaca - pestii stau in apa\n";

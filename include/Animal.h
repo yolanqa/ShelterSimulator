@@ -35,6 +35,7 @@ public:
     virtual void sunet()const =0;
     virtual double calculeaza_taxa_adoptie() const=0;
     virtual void se_joaca_cu(const Animal* a) const;
+    virtual bool accepta_hrana(const Hrana& h) const;
     static int get_nr_total_animale();
 
 

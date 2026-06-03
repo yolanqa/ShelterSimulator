@@ -10,7 +10,7 @@
         : tip(tip), cantitate(cantitate), valoare_nutritiva(valoare_nutritiva){}
 
 
-
+    const std::string& Hrana::get_tip() const { return tip; }
 
     double Hrana::get_valoare_nutritiva() const { return valoare_nutritiva; }
 

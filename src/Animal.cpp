@@ -86,6 +86,10 @@
         std::cout << get_nume() << " nu se joaca cu " << a->get_nume() << "\n";
     }
 
+    bool Animal::accepta_hrana(const Hrana& h) const {
+        return h.get_tip() != "necunoscuta";
+    }
+
     /*std::ostream &operator<<(std::ostream &os, const Animal &obj) {
         return os << "nume: " << obj.nume
                   << " | specie: " << obj.specie

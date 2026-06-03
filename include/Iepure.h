@@ -18,7 +18,7 @@ public:
     const std::string& get_culoare() const;
 
     void sunet() const override;
-
+    bool accepta_hrana(const Hrana& h) const override;
     Animal* clone() const override;
 
     double calculeaza_taxa_adoptie() const override;

@@ -23,6 +23,11 @@ void Iepure::sunet() const {
 Animal* Iepure::clone() const {
     return new Iepure(*this);
 }
+bool Iepure::accepta_hrana(const Hrana& h) const {
+    if (h.get_tip() == "morcovi" || h.get_tip() == "salata") return true;
+    std::cout << get_nume() << " refuza " << h.get_tip() << "\n";
+    return false;
+}
 
 double Iepure::calculeaza_taxa_adoptie() const {
     double taxa = 80.0;
