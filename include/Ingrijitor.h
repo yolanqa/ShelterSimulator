@@ -33,7 +33,7 @@ public:
     ~Ingrijitor();
 
     void afisare_salariu() const;
-    void aplica_tratament(Animal* a) const;
+    static void aplica_tratament(Animal* a);
 
     bool vechime_in_adapost()const;
 

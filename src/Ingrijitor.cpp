@@ -61,7 +61,7 @@
         p.hraneste_toate(h);
     }
 
-    void Ingrijitor::aplica_tratament(Animal* a) const {
+    void Ingrijitor::aplica_tratament(Animal* a) {
         const Caine* c = dynamic_cast<const Caine*>(a);
         if (c != nullptr) {
             a->stare_de_sanatate_modificata(10);
