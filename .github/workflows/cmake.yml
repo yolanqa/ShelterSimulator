@@ -103,7 +103,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-            # renovate: depName=ubuntu
+          # renovate: depName=ubuntu
           - os: ubuntu-24.04
             c: clang-18
             cxx: clang++-18
