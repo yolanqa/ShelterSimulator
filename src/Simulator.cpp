@@ -14,6 +14,7 @@
 #include "Exceptii.h"
 #include "Iepure.h"
 #include"Simulator.h"
+#include "CentruInregistrare.h"
 #include <iostream>
 
     void Simulator::titlu(const std::string& text) {
@@ -80,28 +81,31 @@
             }
             case 2: {
                 titlu("SELECTEAZA ANIMAL");
-                std::cout << "1. Caine\n2. Pisica\n3. Peste\n4. Iepure\n";
+                std::cout << "1. Caine\n 2. Pisica\n 3. Peste\n 4. Iepure\n";
                 int alegere = citesteInt("> ");
+                std::string tip;
+                if (alegere == 1) tip = "caine";
+                else
+                    if (alegere == 2) tip = "pisica";
+                else
+                    if (alegere == 3) tip = "peste";
+                else
+                    if (alegere == 4) tip = "iepure";
+                else {
+                    invalid(); break;
+                }
+
                 std::string nume = citesteString("Nume animal: ");
+                std::string atribut = citesteString("Atribut specific (grupa/rasa/apa/culoare): ");
+
                 try {
-                    if (alegere == 1) {
-                        std::string grupa = citesteString("Grupa (de paza/de frumusete): ");
-                        Caine c(nume.c_str(), "caine", 20.0, 2, 8, 7, hrana_default, grupa);
-                        adapost->adauga_animal_in_primul_padoc(c);
-                    } else if (alegere == 2) {
-                        std::string rasa = citesteString("Rasa (persana/siameza/bengaleza): ");
-                        Pisica p(nume.c_str(), "pisica", 4.0, 2, 8, 6, hrana_default, rasa);
-                        adapost->adauga_animal_in_primul_padoc(p);
-                    } else if (alegere == 3) {
-                        std::string apa = citesteString("Tip apa (dulce/sarata): ");
-                        Peste p(nume.c_str(), "peste", 0.5, 1, 9, 3, hrana_default, apa);
-                        adapost->adauga_animal_in_primul_padoc(p);
-                    } else if (alegere == 4) {
-                        std::string culoare = citesteString("Culoare (alb/negru): ");
-                        Iepure i(nume.c_str(), "iepure", 1.5, 1, 9, 8, hrana_default, culoare);
-                        adapost->adauga_animal_in_primul_padoc(i);
-                    } else invalid();
+                    Animal* a = CentruInregistrare::inregistreaza(tip, nume, 20.0, 2, 8, 7, hrana_default, atribut);
+                    adapost->adauga_animal_in_primul_padoc(*a);
+                    delete a;
+                    std::cout << "Animal inregistrat cu succes!\n";
                 } catch (const AdapostException& e) {
+                    std::cout << "Eroare: " << e.what() << "\n";
+                } catch (const std::invalid_argument& e) {
                     std::cout << "Eroare: " << e.what() << "\n";
                 }
                 break;

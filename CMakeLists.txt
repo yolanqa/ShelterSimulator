@@ -74,6 +74,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         src/Iepure.cpp
         include/Simulator.h
         src/Simulator.cpp
+        include/CentruInregistrare.h
+        src/CentruInregistrare.cpp
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}
 #    PRIVATE
