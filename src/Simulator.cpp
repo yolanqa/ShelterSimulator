@@ -338,6 +338,15 @@
                 Caine cb2("Pufi", "caine", 20.0, 9, 6, 5, hrana_default, "frumusete");
                 int varsta_max = maximul(cb1.get_varsta(), cb2.get_varsta());
                 std::cout << "Cel mai batran caine are: " << varsta_max << " ani\n";
+                std::cout << "Ultima adoptie: " << registru_adoptii.ultimul() << "\n";
+
+                double taxa_min = minimul(a1.get_taxa(), a2.get_taxa());
+                std::cout << "Taxa cea mai mica: " << taxa_min << " Ron\n";
+                std::cout << "Prima adoptie (front): " << registru_adoptii.primul() << "\n";
+                registru_adoptii.inlocuieste(0, Adoptie("Vlad", "2026-03-01", true, 200.0, "Rex"));
+                std::cout << "Dupa inlocuire: " << registru_adoptii.get(0) << "\n";
+                registru_ingrijitori.goleste();
+                std::cout << "Ingrijitori dupa golire: " << registru_ingrijitori.size() << "\n";
 
                 break;
             }

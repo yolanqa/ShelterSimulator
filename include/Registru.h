@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#include <iostream>
 #include <vector>
 #include <stdexcept>
 
@@ -27,5 +28,37 @@ public:
 
     bool gol() const {
         return elemente.empty();
+    }
+
+    const T& ultimul() const {
+        if (elemente.empty())
+            throw std::out_of_range("Registru gol");
+        return elemente.back();
+    }
+
+    void sterge_ultimul() {
+        if (!elemente.empty())
+            elemente.pop_back();
+    }
+
+    void afiseaza_toate() const {
+        for (int i = 0; i < static_cast<int>(elemente.size()); i++)
+            std::cout << i + 1 << ". " << elemente[i] << "\n";
+    }
+
+    const T& primul() const {
+        if (elemente.empty())
+            throw std::out_of_range("Registru gol");
+        return elemente.front();
+    }
+
+    void inlocuieste(int index, const T& element) {
+        if (index < 0 || index >= static_cast<int>(elemente.size()))
+            throw std::out_of_range("Index invalid in Registru");
+        elemente[index] = element;
+    }
+
+    void goleste() {
+        elemente.clear();
     }
 };
