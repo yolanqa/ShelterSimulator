@@ -76,6 +76,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         src/Simulator.cpp
         include/CentruInregistrare.h
         src/CentruInregistrare.cpp
+        include/Istoric.h
+        src/Istoric.cpp
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}
 #    PRIVATE

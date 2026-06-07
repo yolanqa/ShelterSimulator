@@ -13,9 +13,11 @@
 #include "Peste.h"
 #include "Exceptii.h"
 #include "Iepure.h"
-#include"Simulator.h"
+#include "Simulator.h"
 #include "CentruInregistrare.h"
+#include "Istoric.h"
 #include <iostream>
+#include <string>
 
     void Simulator::titlu(const std::string& text) {
         std::cout << "\n=== " << text << " ===\n";
@@ -81,19 +83,14 @@
             }
             case 2: {
                 titlu("SELECTEAZA ANIMAL");
-                std::cout << "1. Caine\n 2. Pisica\n 3. Peste\n 4. Iepure\n";
+                std::cout << "1. Caine\n2. Pisica\n3. Peste\n4. Iepure\n";
                 int alegere = citesteInt("> ");
                 std::string tip;
                 if (alegere == 1) tip = "caine";
-                else
-                    if (alegere == 2) tip = "pisica";
-                else
-                    if (alegere == 3) tip = "peste";
-                else
-                    if (alegere == 4) tip = "iepure";
-                else {
-                    invalid(); break;
-                }
+                else if (alegere == 2) tip = "pisica";
+                else if (alegere == 3) tip = "peste";
+                else if (alegere == 4) tip = "iepure";
+                else { invalid(); break; }
 
                 std::string nume = citesteString("Nume animal: ");
                 std::string atribut = citesteString("Atribut specific (grupa/rasa/apa/culoare): ");
@@ -102,6 +99,7 @@
                     Animal* a = CentruInregistrare::inregistreaza(tip, nume, 20.0, 2, 8, 7, hrana_default, atribut);
                     adapost->adauga_animal_in_primul_padoc(*a);
                     delete a;
+                    Istoric::get_instance().inregistreaza("Animal nou inregistrat: " + nume);
                     std::cout << "Animal inregistrat cu succes!\n";
                 } catch (const AdapostException& e) {
                     std::cout << "Eroare: " << e.what() << "\n";
@@ -113,6 +111,7 @@
             case 3:
                 adapost->hraneste_toate(hrana_default);
                 adapost->sorteaza_animale_primul_padoc();
+                Istoric::get_instance().inregistreaza("Toate animalele au fost hranite");
                 std::cout << "Animale hranite!\n";
                 break;
             case 4:
@@ -163,6 +162,7 @@
         titlu("SIMULARE");
         int luni = citesteInt("Introduceti numarul de luni: ");
         adapost->trece_timpul(luni);
+        Istoric::get_instance().inregistreaza("Simulare: au trecut " + std::to_string(luni) + " luni");
         std::cout << "Simulare finalizata!\n";
         std::cout << *adapost;
     }
@@ -202,6 +202,7 @@
                   << "3. Verifica ingrijitor\n"
                   << "4. Statistici extra\n"
                   << "5. Verifica simulare\n"
+                  << "6. Istoric evenimente\n"
                   << "0. Inapoi\n";
 
         int opt = citesteInt("> ");
@@ -233,7 +234,6 @@
                 ing.afisare_salariu();
                 Padoc p_temp({}, {}, 5, "temp", 100.0);
                 ing.alocare_padocuri(p_temp, hrana_default);
-                //Ingrijitor ing1("Stefan", 5, "veterinar", 3000.0);
                 Animal* pacient = new Caine("Rex", "caine", 25.0, 3, 4, 7, hrana_default, "paza");
                 ing.aplica_tratament(pacient);
                 delete pacient;
@@ -246,7 +246,6 @@
                 std::cout << "Poate cumpara hrana: " << adapost->poate_cumpara_hrana(200.0) << "\n";
                 break;
             }
-
             case 5: {
                 Caine c1("Test1", "caine", 20.0, 2, 8, 7, hrana_default, "paza");
                 Caine c2("Test2", "caine", 15.0, 3, 4, 5, hrana_default, "frumusete");
@@ -269,44 +268,6 @@
                 std::cout << "Culoare: " << i1.get_culoare() << "\n";
 
                 adapost->sorteaza_animale_primul_padoc();
-                adapost->raport();
-                Padoc p_test({}, {}, 3, "test", 100.0);
-                Adoptie ad_test("Ion", "2026-01-01", true, 100.0, "Rex");
-                p_test.adauga_adoptie(ad_test);
-
-                std::cout << "Venituri: " << p_test.venituri_adoptii() << " Ron\n";
-                std::cout << "Exista animal critic: " << p_test.exista_animal_critic() << "\n";
-
-                Animal* a1 = new Caine("Max", "caine", 25.0, 3, 8, 7, hrana_default, "paza");
-                Animal* a2 = new Iepure("Gogonas", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
-                Animal* a3 = new Pisica("Mia", "pisica", 4.0, 2, 8, 6, hrana_default, "siameza");
-                Animal* a4 = new Peste("Nemo", "peste", 0.5, 1, 9, 3, hrana_default, "dulce");
-
-                a1->se_joaca_cu(a2);
-                a1->se_joaca_cu(a3);
-                a3->se_joaca_cu(a3);
-                a4->se_joaca_cu(a1);
-                a2->se_joaca_cu(a1);
-                delete a1;
-                delete a2;
-                delete a3;
-                delete a4;
-
-
-                std::cout << "Categoria hranei: " << hrana_default.categorie_hrana() << "\n";
-                Hrana h_morcovi("morcovi", 50.0, 10.0);
-                Iepure i_test("Fluffy", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
-                std::cout << "Fluffy accepta morcovi: " << i_test.accepta_hrana(h_morcovi) << "\n";
-                std::cout << "Fluffy accepta carne: " << i_test.accepta_hrana(hrana_default) << "\n";
-
-
-                Hrana h_peste("mancare_peste", 30.0, 15.0);
-                std::cout << "Nemo accepta mancare_peste: " << pe1.accepta_hrana(h_peste) << "\n";
-                std::cout << "c1 accepta carne: " << c1.accepta_hrana(hrana_default) << "\n";
-                break;
-
             }
-            case 0: break;
-            default: invalid();
         }
     }
