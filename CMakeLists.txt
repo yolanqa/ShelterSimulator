@@ -78,6 +78,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         src/CentruInregistrare.cpp
         include/Istoric.h
         src/Istoric.cpp
+        include/Registru.h
+        include/Utilitare.h
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}
 #    PRIVATE

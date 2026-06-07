@@ -16,6 +16,8 @@
 #include "Simulator.h"
 #include "CentruInregistrare.h"
 #include "Istoric.h"
+#include "Registru.h"
+#include "Utilitare.h"
 #include <iostream>
 #include <string>
 
@@ -202,6 +204,7 @@
                   << "4. Statistici extra\n"
                   << "5. Verifica simulare\n"
                   << "6. Istoric evenimente\n"
+                  << "7. Registre\n"
                   << "0. Inapoi\n";
 
         int opt = citesteInt("> ");
@@ -304,6 +307,38 @@
             case 6: {
                 Istoric::get_instance().afiseaza_istoric();
                 std::cout << "Total evenimente: " << Istoric::get_instance().numar_evenimente() << "\n";
+                break;
+            }
+            case 7: {
+                titlu("REGISTRE");
+
+
+                Registru<Adoptie> registru_adoptii;
+                registru_adoptii.adauga(Adoptie("Ana", "2026-01-10", true, 120.0, "Rex"));
+                registru_adoptii.adauga(Adoptie("Mihai", "2026-02-15", false, 90.0, "Mia"));
+                std::cout << "Adoptii in registru: " << registru_adoptii.size() << "\n";
+                if (!registru_adoptii.gol())
+                    std::cout << "Prima adoptie: " << registru_adoptii.get(0) << "\n";
+
+
+                Registru<Ingrijitor> registru_ingrijitori;
+                registru_ingrijitori.adauga(Ingrijitor("Stefan", 5, "veterinar", 3000.0));
+                registru_ingrijitori.adauga(Ingrijitor("Ioana", 3, "asistent", 2200.0));
+                std::cout << "Ingrijitori in registru: " << registru_ingrijitori.size() << "\n";
+                if (!registru_ingrijitori.gol())
+                    std::cout << "Primul ingrijitor: " << registru_ingrijitori.get(0) << "\n";
+
+
+                Adoptie a1("Ana", "2026-01-10", true, 120.0, "Rex");
+                Adoptie a2("Mihai", "2026-02-15", false, 90.0, "Mia");
+                double taxa_max = maximul(a1.get_taxa(), a2.get_taxa());
+                std::cout << "Taxa cea mai mare: " << taxa_max << " Ron\n";
+
+                Caine cb1("Rex", "caine", 25.0, 4, 8, 7, hrana_default, "paza");
+                Caine cb2("Pufi", "caine", 20.0, 9, 6, 5, hrana_default, "frumusete");
+                int varsta_max = maximul(cb1.get_varsta(), cb2.get_varsta());
+                std::cout << "Cel mai batran caine are: " << varsta_max << " ani\n";
+
                 break;
             }
             case 0: break;
