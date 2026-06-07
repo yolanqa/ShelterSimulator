@@ -34,7 +34,6 @@
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Input invalid!\n" << mesaj;
         }
-
         return val;
     }
 
@@ -268,6 +267,46 @@
                 std::cout << "Culoare: " << i1.get_culoare() << "\n";
 
                 adapost->sorteaza_animale_primul_padoc();
+                adapost->raport();
+                Padoc p_test({}, {}, 3, "test", 100.0);
+                Adoptie ad_test("Ion", "2026-04-01", true, 100.0, "Rex");
+                p_test.adauga_adoptie(ad_test);
+
+                std::cout << "Venituri: " << p_test.venituri_adoptii() << " Ron\n";
+                std::cout << "Exista animal critic: " << p_test.exista_animal_critic() << "\n";
+
+                Animal* a1 = new Caine("Max", "caine", 25.0, 3, 8, 7, hrana_default, "paza");
+                Animal* a2 = new Iepure("Gogonas", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
+                Animal* a3 = new Pisica("Mia", "pisica", 4.0, 2, 8, 6, hrana_default, "siameza");
+                Animal* a4 = new Peste("Nemo", "peste", 0.5, 1, 9, 3, hrana_default, "dulce");
+
+                a1->se_joaca_cu(a2);
+                a1->se_joaca_cu(a3);
+                a3->se_joaca_cu(a3);
+                a4->se_joaca_cu(a1);
+                a2->se_joaca_cu(a1);
+                delete a1;
+                delete a2;
+                delete a3;
+                delete a4;
+
+                std::cout << "Categoria hranei: " << hrana_default.categorie_hrana() << "\n";
+                Hrana h_morcovi("morcovi", 50.0, 10.0);
+                Iepure i_test("Albisor", "iepure", 1.5, 1, 9, 8, hrana_default, "alb");
+                std::cout << "Albisor accepta morcovi: " << i_test.accepta_hrana(h_morcovi) << "\n";
+                std::cout << "Albisor accepta carne: " << i_test.accepta_hrana(hrana_default) << "\n";
+
+                Hrana h_peste("mancare_peste", 30.0, 15.0);
+                std::cout << "Nemo accepta mancare_peste: " << pe1.accepta_hrana(h_peste) << "\n";
+                std::cout << "c1 accepta carne: " << c1.accepta_hrana(hrana_default) << "\n";
+                break;
             }
+            case 6: {
+                Istoric::get_instance().afiseaza_istoric();
+                std::cout << "Total evenimente: " << Istoric::get_instance().numar_evenimente() << "\n";
+                break;
+            }
+            case 0: break;
+            default: invalid();
         }
     }
