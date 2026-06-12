@@ -347,7 +347,10 @@
                 std::cout << "Dupa inlocuire: " << registru_adoptii.get(0) << "\n";
                 registru_ingrijitori.goleste();
                 std::cout << "Ingrijitori dupa golire: " << registru_ingrijitori.size() << "\n";
-
+                std::cout << "Continutul registrului de adoptii:\n";
+                registru_adoptii.afiseaza_toate();
+                registru_adoptii.sterge_ultimul();
+                std::cout << "Adoptii dupa stergerea ultimei: " << registru_adoptii.size() << "\n";
                 break;
             }
             case 0: break;
