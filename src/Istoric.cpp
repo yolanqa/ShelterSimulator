@@ -4,6 +4,7 @@
 
 #include "Istoric.h"
 #include <iostream>
+#include <stdexcept>
 
 Istoric& Istoric::get_instance() {
     static Istoric instanta;
@@ -26,4 +27,21 @@ void Istoric::afiseaza_istoric() const {
 
 int Istoric::numar_evenimente() const {
     return static_cast<int>(evenimente.size());
+}
+
+const std::string& Istoric::ultimul_eveniment() const {
+    if (evenimente.empty())
+        throw std::out_of_range("Istoric gol");
+    return evenimente.back();
+}
+
+bool Istoric::contine(const std::string& text) const {
+    for (const auto& e : evenimente)
+        if (e.find(text) != std::string::npos)
+            return true;
+    return false;
+}
+
+void Istoric::goleste() {
+    evenimente.clear();
 }

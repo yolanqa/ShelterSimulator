@@ -19,4 +19,6 @@ public:
     AdapostBuilder& cu_buget(double buget);
     AdapostBuilder& adauga_padoc(const Padoc& p);
     Adapost* construieste();
+    AdapostBuilder& reset();
+    int numar_padocuri_adaugate() const;
 };

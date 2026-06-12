@@ -19,4 +19,7 @@ public:
     void inregistreaza(const std::string& eveniment);
     void afiseaza_istoric() const;
     int numar_evenimente() const;
+    const std::string& ultimul_eveniment() const;
+    bool contine(const std::string& text) const;
+    void goleste();
 };

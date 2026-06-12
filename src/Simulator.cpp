@@ -98,7 +98,10 @@
 
                 std::string nume = citesteString("Nume animal: ");
                 std::string atribut = citesteString("Atribut specific (grupa/rasa/apa/culoare): ");
-
+                if (!CentruInregistrare::tip_valid(tip)) {
+                    std::cout << "Tip invalid!\n";
+                    break;
+                }
                 try {
                     Animal* a = CentruInregistrare::inregistreaza(tip, nume, 20.0, 2, 8, 7, hrana_default, atribut);
                     adapost->adauga_animal_in_primul_padoc(*a);
@@ -110,6 +113,7 @@
                 } catch (const std::invalid_argument& e) {
                     std::cout << "Eroare: " << e.what() << "\n";
                 }
+
                 break;
             }
             case 3:
@@ -310,6 +314,9 @@
             case 6: {
                 Istoric::get_instance().afiseaza_istoric();
                 std::cout << "Total evenimente: " << Istoric::get_instance().numar_evenimente() << "\n";
+                if (Istoric::get_instance().numar_evenimente() > 0)
+                    std::cout << "Ultimul eveniment: " << Istoric::get_instance().ultimul_eveniment() << "\n";
+                std::cout << "Contine 'hranite': " << Istoric::get_instance().contine("hranite") << "\n";
                 break;
             }
             case 7: {
@@ -370,6 +377,12 @@
                 afiseaza_registru(registru_nume);
                 std::cout << "Continut registru adoptii:\n";
                 afiseaza_registru(registru_adoptii);
+                AdapostBuilder b_test;
+                Padoc pt({}, {}, 5, "test", 100.0);
+                b_test.cu_nume("Test").cu_buget(500.0).adauga_padoc(pt);
+                std::cout << "Padocuri in builder: " << b_test.numar_padocuri_adaugate() << "\n";
+                Adapost* a_test = b_test.construieste();
+                delete a_test;
                 break;
             }
             case 0: break;

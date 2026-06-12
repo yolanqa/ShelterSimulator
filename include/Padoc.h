@@ -53,6 +53,7 @@ public:
     double taxa_medie_adoptie() const;
 
 
+
     friend std::ostream &operator<<(std::ostream &os, const Padoc &obj);
 
 

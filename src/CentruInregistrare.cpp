@@ -23,4 +23,9 @@ Animal* CentruInregistrare::inregistreaza(const std::string& tip, const std::str
     if (tip == "iepure")
         return new Iepure(nume, "iepure", greutate, varsta, stare_sanatate, nivel_sociabilitate, hrana, atribut_specific);
     throw std::invalid_argument("Animal necunoscut: " + tip);
+
+
+}
+bool CentruInregistrare::tip_valid(const std::string& tip) {
+    return tip == "caine" || tip == "pisica" || tip == "peste" || tip == "iepure";
 }

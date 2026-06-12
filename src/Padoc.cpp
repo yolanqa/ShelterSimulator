@@ -149,11 +149,13 @@
             }) != vector_animale.end();
     }
 
+
     int Padoc::numar_animale_adoptabile() const {
         return static_cast<int>(std::count_if(vector_animale.begin(), vector_animale.end(),
             [](const std::unique_ptr<Animal>& a) {
                 return a->este_de_adoptat();
             }));
+
     }
 
 
