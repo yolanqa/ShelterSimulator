@@ -61,4 +61,8 @@ public:
     void goleste() {
         elemente.clear();
     }
+    void combina(const Registru<T>& altul) {
+        for (int i = 0; i < altul.size(); i++)
+            elemente.push_back(altul.get(i));
+    }
 };

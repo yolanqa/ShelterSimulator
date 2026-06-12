@@ -80,6 +80,8 @@ add_executable(${MAIN_EXECUTABLE_NAME}
         src/Istoric.cpp
         include/Registru.h
         include/Utilitare.h
+        include/AdapostBuilder.h
+        src/AdapostBuilder.cpp
 )
 #target_sources(${MAIN_EXECUTABLE_NAME}
 #    PRIVATE

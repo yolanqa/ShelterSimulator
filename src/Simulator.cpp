@@ -18,6 +18,7 @@
 #include "Istoric.h"
 #include "Registru.h"
 #include "Utilitare.h"
+#include "AdapostBuilder.h"
 #include <iostream>
 #include <string>
 
@@ -48,11 +49,13 @@
     }
 
     Simulator::Simulator(const std::string& nume_adapost, double buget, const Hrana& hrana)
-        : hrana_default(hrana), activ(true) {
-        std::vector<std::unique_ptr<Padoc>> padocuri_initiale;
+    : hrana_default(hrana), activ(true) {
         Padoc p_initial({}, {}, 10, "general", 300.0);
-        padocuri_initiale.push_back(std::make_unique<Padoc>(p_initial));
-        adapost = new Adapost(std::move(padocuri_initiale), nume_adapost, buget);
+        AdapostBuilder builder;
+        adapost = builder.cu_nume(nume_adapost)
+                         .cu_buget(buget)
+                         .adauga_padoc(p_initial)
+                         .construieste();
     }
 
     Simulator::~Simulator() {
@@ -351,6 +354,22 @@
                 registru_adoptii.afiseaza_toate();
                 registru_adoptii.sterge_ultimul();
                 std::cout << "Adoptii dupa stergerea ultimei: " << registru_adoptii.size() << "\n";
+                Registru<std::string> registru_nume;
+                registru_nume.adauga("Bella");
+                registru_nume.adauga("Rex");
+                registru_nume.adauga("Mia");
+                std::cout << "Nume inregistrate: " << registru_nume.size() << "\n";
+                std::cout << "Primul nume: " << registru_nume.primul() << "\n";
+                std::cout << "Ultimul nume: " << registru_nume.ultimul() << "\n";
+                Registru<std::string> alte_nume;
+                alte_nume.adauga("Pufi");
+                alte_nume.adauga("Nemo");
+                registru_nume.combina(alte_nume);
+                std::cout << "Total nume dupa combinare: " << registru_nume.size() << "\n";
+                std::cout << "Continut registru nume:\n";
+                afiseaza_registru(registru_nume);
+                std::cout << "Continut registru adoptii:\n";
+                afiseaza_registru(registru_adoptii);
                 break;
             }
             case 0: break;
