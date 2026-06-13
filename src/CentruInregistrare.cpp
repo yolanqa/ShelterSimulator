@@ -29,3 +29,7 @@ Animal* CentruInregistrare::inregistreaza(const std::string& tip, const std::str
 bool CentruInregistrare::tip_valid(const std::string& tip) {
     return tip == "caine" || tip == "pisica" || tip == "peste" || tip == "iepure";
 }
+
+Animal* CentruInregistrare::inregistreaza_implicit(const std::string& tip, const std::string& nume, const Hrana& hrana, const std::string& atribut_specific) {
+    return inregistreaza(tip, nume, 15.0, 1, 6, 5, hrana, atribut_specific);
+}

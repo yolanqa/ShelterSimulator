@@ -385,6 +385,9 @@
                 delete a_test;
                 b_test.reset();
                 std::cout << "Padocuri dupa reset: " << b_test.numar_padocuri_adaugate() << "\n";
+                Animal* a_impl = CentruInregistrare::inregistreaza_implicit("pisica", "Lola", hrana_default, "persana");
+                std::cout << "Animal creat implicit: " << *a_impl << "\n";
+                delete a_impl;
                 break;
             }
             case 0: break;
