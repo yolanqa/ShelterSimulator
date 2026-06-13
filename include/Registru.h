@@ -12,6 +12,12 @@ class Registru {
     std::vector<T> elemente;
 
 public:
+    bool contine(const T& val) const {
+        for (int i = 0; i < static_cast<int>(elemente.size()); i++)
+            if (elemente[i] == val)
+                return true;
+        return false;
+    }
     void adauga(const T& element) {
         elemente.push_back(element);
     }
@@ -64,5 +70,21 @@ public:
     void combina(const Registru<T>& altul) {
         for (int i = 0; i < altul.size(); i++)
             elemente.push_back(altul.get(i));
+    }
+
+    //indexul primului element egal cu val
+    int cauta(const T& val) const {
+        for (int i = 0; i < static_cast<int>(elemente.size()); i++)
+            if (elemente[i] == val)
+                return i;
+        return -1;
+    }
+
+    int numara(const T& val) const {
+        int count = 0;
+        for (int i = 0; i < static_cast<int>(elemente.size()); i++)
+            if (elemente[i] == val)
+                count++;
+        return count;
     }
 };

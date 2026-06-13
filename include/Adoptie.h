@@ -26,6 +26,9 @@ public:
 
     [[nodiscard]] bool este_aprobata() const;
     [[nodiscard]] double get_taxa() const;
+    bool operator==(const Adoptie& other) const {
+        return nume_adoptator == other.nume_adoptator && nume_animal == other.nume_animal;
+    }
 
 
     friend std::ostream &operator<<(std::ostream &os, const Adoptie &obj);

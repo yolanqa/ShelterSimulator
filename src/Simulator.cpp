@@ -343,6 +343,12 @@
                 Adoptie a2("Mihai", "2026-02-15", false, 90.0, "Mia");
                 double taxa_max = maximul(a1.get_taxa(), a2.get_taxa());
                 std::cout << "Taxa cea mai mare: " << taxa_max << " Ron\n";
+                double suma_taxe = 0.0;
+                for (int i = 0; i < registru_adoptii.size(); i++)
+                    suma_taxe = suma_taxe + registru_adoptii.get(i).get_taxa();
+                std::cout << "Suma taxelor de adoptie: " << suma_taxe << " Ron\n";
+
+
 
                 Caine cb1("Rex", "caine", 25.0, 4, 8, 7, hrana_default, "paza");
                 Caine cb2("Pufi", "caine", 20.0, 9, 6, 5, hrana_default, "frumusete");
@@ -373,6 +379,10 @@
                 alte_nume.adauga("Nemo");
                 registru_nume.combina(alte_nume);
                 std::cout << "Total nume dupa combinare: " << registru_nume.size() << "\n";
+                std::cout << "Contine Rex: " << registru_nume.contine("Rex") << "\n";
+                std::cout << "Contine Gogonas: " << registru_nume.contine("Gogonas") << "\n";
+                std::cout << "Index Rex: " << registru_nume.cauta("Rex") << "\n";
+                std::cout << "Aparitii Rex: " << registru_nume.numara("Rex") << "\n";
                 std::cout << "Continut registru nume:\n";
                 afiseaza_registru(registru_nume);
                 std::cout << "Continut registru adoptii:\n";
@@ -388,6 +398,7 @@
                 Animal* a_impl = CentruInregistrare::inregistreaza_implicit("pisica", "Lola", hrana_default, "persana");
                 std::cout << "Animal creat implicit: " << *a_impl << "\n";
                 delete a_impl;
+
                 break;
             }
             case 0: break;

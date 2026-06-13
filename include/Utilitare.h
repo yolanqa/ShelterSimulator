@@ -20,3 +20,12 @@ void afiseaza_registru(const Registru<T>& r) {
     for (int i = 0; i < r.size(); i++)
         std::cout << "  [" << i << "] " << r.get(i) << "\n";
 }
+
+
+template <typename T>
+T suma_registru(const Registru<T>& r) {
+    T total = T{};
+    for (int i = 0; i < r.size(); i++)
+        total = total + r.get(i);
+    return total;
+}
