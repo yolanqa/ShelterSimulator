@@ -102,6 +102,11 @@
                     std::cout << "Tip invalid!\n";
                     break;
                 }
+                std::vector<std::string> tipuri = CentruInregistrare::tipuri_disponibile();
+                std::cout << "Tipuri disponibile: ";
+                for (const auto& t : tipuri)
+                    std::cout << t << " ";
+                std::cout << "\n";
                 try {
                     Animal* a = CentruInregistrare::inregistreaza(tip, nume, 20.0, 2, 8, 7, hrana_default, atribut);
                     adapost->adauga_animal_in_primul_padoc(*a);
@@ -317,6 +322,8 @@
                 if (Istoric::get_instance().numar_evenimente() > 0)
                     std::cout << "Ultimul eveniment: " << Istoric::get_instance().ultimul_eveniment() << "\n";
                 std::cout << "Contine 'hranite': " << Istoric::get_instance().contine("hranite") << "\n";
+                Istoric::get_instance().pastreaza_ultimele(5);
+                std::cout << "Dupa curatare, evenimente: " << Istoric::get_instance().numar_evenimente() << "\n";
                 break;
             }
             case 7: {
@@ -347,6 +354,7 @@
                 for (int i = 0; i < registru_adoptii.size(); i++)
                     suma_taxe = suma_taxe + registru_adoptii.get(i).get_taxa();
                 std::cout << "Suma taxelor de adoptie: " << suma_taxe << " Ron\n";
+
 
 
 

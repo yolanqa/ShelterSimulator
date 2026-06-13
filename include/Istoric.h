@@ -22,4 +22,5 @@ public:
     const std::string& ultimul_eveniment() const;
     bool contine(const std::string& text) const;
     void goleste();
+    void pastreaza_ultimele(int n);
 };

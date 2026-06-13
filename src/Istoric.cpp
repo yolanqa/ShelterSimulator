@@ -45,3 +45,8 @@ bool Istoric::contine(const std::string& text) const {
 void Istoric::goleste() {
     evenimente.clear();
 }
+
+void Istoric::pastreaza_ultimele(int n) {
+    if (n >= static_cast<int>(evenimente.size())) return;
+    evenimente.erase(evenimente.begin(), evenimente.end() - n);
+}

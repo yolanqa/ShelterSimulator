@@ -22,10 +22,3 @@ void afiseaza_registru(const Registru<T>& r) {
 }
 
 
-template <typename T>
-T suma_registru(const Registru<T>& r) {
-    T total = T{};
-    for (int i = 0; i < r.size(); i++)
-        total = total + r.get(i);
-    return total;
-}

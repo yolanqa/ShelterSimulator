@@ -5,6 +5,7 @@
 #pragma once
 #include "Animal.h"
 #include "Hrana.h"
+#include <vector>
 #include <string>
 
 class CentruInregistrare {
@@ -13,4 +14,5 @@ public:
                                  int nivel_sociabilitate, const Hrana& hrana, const std::string& atribut_specific);
     static bool tip_valid(const std::string& tip);
     static Animal* inregistreaza_implicit(const std::string& tip, const std::string& nume, const Hrana& hrana, const std::string& atribut_specific);
+    static std::vector<std::string> tipuri_disponibile();
 };

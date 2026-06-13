@@ -33,3 +33,6 @@ bool CentruInregistrare::tip_valid(const std::string& tip) {
 Animal* CentruInregistrare::inregistreaza_implicit(const std::string& tip, const std::string& nume, const Hrana& hrana, const std::string& atribut_specific) {
     return inregistreaza(tip, nume, 15.0, 1, 6, 5, hrana, atribut_specific);
 }
+std::vector<std::string> CentruInregistrare::tipuri_disponibile() {
+    return {"caine", "pisica", "peste", "iepure"};
+}
