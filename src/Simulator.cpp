@@ -383,6 +383,8 @@
                 std::cout << "Padocuri in builder: " << b_test.numar_padocuri_adaugate() << "\n";
                 Adapost* a_test = b_test.construieste();
                 delete a_test;
+                b_test.reset();
+                std::cout << "Padocuri dupa reset: " << b_test.numar_padocuri_adaugate() << "\n";
                 break;
             }
             case 0: break;
