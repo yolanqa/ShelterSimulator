@@ -322,6 +322,18 @@
                 if (Istoric::get_instance().numar_evenimente() > 0)
                     std::cout << "Ultimul eveniment: " << Istoric::get_instance().ultimul_eveniment() << "\n";
                 std::cout << "Contine 'hranite': " << Istoric::get_instance().contine("hranite") << "\n";
+
+                auto despre_hranire = Istoric::get_instance().evenimente_care_contin("hranite");
+                std::cout << "Evenimente despre hranire: " << despre_hranire.size() << "\n";
+                for (const auto& ev : despre_hranire)
+                    std::cout << "   - " << ev << "\n";
+
+                try {
+                    Istoric::get_instance().exporta("istoric.txt");
+                    std::cout << "Istoric salvat in istoric.txt\n";
+                } catch (const std::exception& e) {
+                    std::cout << "Eroare la export: " << e.what() << "\n";
+                }
                 Istoric::get_instance().pastreaza_ultimele(5);
                 std::cout << "Dupa curatare, evenimente: " << Istoric::get_instance().numar_evenimente() << "\n";
                 break;
@@ -344,6 +356,18 @@
                 std::cout << "Ingrijitori in registru: " << registru_ingrijitori.size() << "\n";
                 if (!registru_ingrijitori.gol())
                     std::cout << "Primul ingrijitor: " << registru_ingrijitori.get(0) << "\n";
+
+                int adoptii_aprobate = registru_adoptii.numara_daca(
+                    [](const Adoptie& a){ return a.este_aprobata(); });
+                std::cout << "Adoptii aprobate: " << adoptii_aprobate << "\n";
+
+                Registru<Adoptie> aprobate = registru_adoptii.filtreaza(
+                    [](const Adoptie& a){ return a.este_aprobata(); });
+                std::cout << "In registrul filtrat: " << aprobate.size() << " adoptii\n";
+
+                int seniori = registru_ingrijitori.numara_daca(
+                    [](const Ingrijitor& i){ return i.vechime_in_adapost(); });
+                std::cout << "Ingrijitori cu vechime: " << seniori << "\n";
 
 
                 Adoptie a1("Ana", "2026-01-10", true, 120.0, "Rex");
