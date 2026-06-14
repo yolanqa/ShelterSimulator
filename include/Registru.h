@@ -8,10 +8,8 @@
 #include <stdexcept>
 
 template <typename T>
-
 class Registru {
     std::vector<T> elemente;
-
 
 public:
     bool contine(const T& val) const {
@@ -88,24 +86,5 @@ public:
             if (elemente[i] == val)
                 count++;
         return count;
-    }
-
-    // in Registru<T>
-    template <typename Pred>
-    int numara_daca(Pred conditie) const {
-        int count = 0;
-        for (const auto& e : elemente)
-            if (conditie(e))
-                count++;
-        return count;
-    }
-
-    template <typename Pred>
-    Registru<T> filtreaza(Pred conditie) const {
-        Registru<T> rezultat;
-        for (const auto& e : elemente)
-            if (conditie(e))
-                rezultat.adauga(e);
-        return rezultat;
     }
 };

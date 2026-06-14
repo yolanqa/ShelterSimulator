@@ -23,7 +23,4 @@ public:
     bool contine(const std::string& text) const;
     void goleste();
     void pastreaza_ultimele(int n);
-    void inregistreaza_multiple(const std::vector<std::string>& ev);
-    std::vector<std::string> evenimente_care_contin(const std::string& text) const;
-    void exporta(const std::string& fisier) const;
 };

@@ -5,8 +5,6 @@
 #include "Istoric.h"
 #include <iostream>
 #include <stdexcept>
-#include<fstream>
-#include<algorithm>
 
 Istoric& Istoric::get_instance() {
     static Istoric instanta;
@@ -51,22 +49,4 @@ void Istoric::goleste() {
 void Istoric::pastreaza_ultimele(int n) {
     if (n >= static_cast<int>(evenimente.size())) return;
     evenimente.erase(evenimente.begin(), evenimente.end() - n);
-}
-
-void Istoric::inregistreaza_multiple(const std::vector<std::string>& ev) {
-    for (const auto& e : ev)
-        evenimente.push_back(e);
-}
-
-std::vector<std::string> Istoric::evenimente_care_contin(const std::string& text) const {
-    std::vector<std::string> rezultat;
-    for (const auto& e : evenimente)
-        if (e.find(text) != std::string::npos)
-            rezultat.push_back(e);
-    return rezultat;
-}
-void Istoric::exporta(const std::string& fisier) const {
-    std::ofstream out(fisier);
-    if (!out) throw std::runtime_error("Nu pot scrie in " + fisier);
-    for (const auto& e : evenimente) out << e << "\n";
 }
