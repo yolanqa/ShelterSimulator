@@ -21,4 +21,5 @@ public:
     Adapost* construieste();
     AdapostBuilder& reset();
     int numar_padocuri_adaugate() const;
+    std::unique_ptr<Adapost> construieste_unic();
 };

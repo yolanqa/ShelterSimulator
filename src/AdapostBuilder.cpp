@@ -3,7 +3,7 @@
 //
 
 #include "AdapostBuilder.h"
-
+#include <stdexcept>
 AdapostBuilder::AdapostBuilder() : nume("Adapost"), buget(0.0) {}
 AdapostBuilder& AdapostBuilder::cu_nume(const std::string& n) {
     nume = n;
@@ -29,4 +29,11 @@ AdapostBuilder& AdapostBuilder::reset() {
 
 int AdapostBuilder::numar_padocuri_adaugate() const {
     return static_cast<int>(padocuri.size());
+}
+std::unique_ptr<Adapost> AdapostBuilder::construieste_unic() {
+    if (buget < 0)
+        throw std::invalid_argument("Buget negativ");
+    if (padocuri.empty())
+        throw std::runtime_error("Adapost fara padocuri");
+    return std::make_unique<Adapost>(std::move(padocuri), nume, buget);
 }

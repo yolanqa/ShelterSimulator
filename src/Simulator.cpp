@@ -421,11 +421,22 @@
                 afiseaza_registru(registru_adoptii);
                 AdapostBuilder b_test;
                 Padoc pt({}, {}, 5, "test", 100.0);
+
+                try {
+                    AdapostBuilder b_invalid;
+                    b_invalid.cu_nume("Invalid").cu_buget(-100.0).adauga_padoc(pt);
+                    Adapost* a_invalid = b_invalid.construieste();
+                    delete a_invalid;
+                } catch (const std::invalid_argument& e) {
+                    std::cout << "Builder validare: " << e.what() << "\n";
+                }
+
                 b_test.cu_nume("Test").cu_buget(500.0).adauga_padoc(pt);
                 std::cout << "Padocuri in builder: " << b_test.numar_padocuri_adaugate() << "\n";
-                Adapost* a_test = b_test.construieste();
-                delete a_test;
+                auto a_unic = b_test.construieste_unic();
+                std::cout << "Builder unic: " << a_unic->get_nume() << "\n";
                 b_test.reset();
+                std::cout << "Padocuri dupa reset: " << b_test.numar_padocuri_adaugate() << "\n";
                 std::cout << "Padocuri dupa reset: " << b_test.numar_padocuri_adaugate() << "\n";
                 Animal* a_impl = CentruInregistrare::inregistreaza_implicit("pisica", "Lola", hrana_default, "persana");
                 std::cout << "Animal creat implicit: " << *a_impl << "\n";
